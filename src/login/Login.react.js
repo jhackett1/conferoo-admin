@@ -15,17 +15,19 @@ class Login extends Component {
     }
 
     return (
-      <Row className="show-grid">
-        <Col md={2}></Col>
-        <Col md={8}>
-          <Jumbotron className="text-center">
-            <h1>Conferoo Publisher</h1>
-            <p class="lead">Log in for conference organisers</p>
-            <Button type="button" onClick={handleClick} className="btn btn-primary"><Glyphicon glyph="google" /> Log in with Google</Button>
-          </Jumbotron>
-        </Col>
-        <Col md={2}></Col>
-      </Row>
+      <div className="container">
+        <Row className="show-grid">
+          <Col md={2}></Col>
+          <Col md={8}>
+            <Jumbotron className="text-center">
+              <h1>Conferoo Publisher</h1>
+              <p className="lead">Log in for conference organisers</p>
+              <Button type="button" onClick={handleClick} className="btn btn-primary"><Glyphicon glyph="google" /> Log in with Google</Button>
+            </Jumbotron>
+          </Col>
+          <Col md={2}></Col>
+        </Row>
+      </div>
     );
   }
 }

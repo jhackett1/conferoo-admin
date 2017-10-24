@@ -13,6 +13,7 @@ class Header extends Component {
         </Navbar.Header>
         <Nav>
             <li><Link to="/events">Events</Link></li>
+            <li><Link to="/about">About</Link></li>            
         </Nav>
         <Nav className='navbar-right'>
             <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>

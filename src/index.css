@@ -1,0 +1,12 @@
+.navbar {
+  border-radius: 0;
+}
+
+
+.input-lg, .mce-tinymce.mce-container.mce-panel{
+  margin-bottom: 22px
+}
+
+footer{
+  margin-top: 44px;
+}
