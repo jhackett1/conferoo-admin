@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import eventApi from '../api/eventApi';
-import Tiny from '../partials/TinyMce.react';
 
 class EventEdit extends Component {
   render() {

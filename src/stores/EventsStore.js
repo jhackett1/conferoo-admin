@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events';
-import eventApi from '../api/eventApi';
 import dispatcher from '../dispatcher/dispatcher';
 
 class EventsStore extends EventEmitter{
