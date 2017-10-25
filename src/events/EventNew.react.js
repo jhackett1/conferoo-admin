@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Grid, Row, Col, Panel, Form, FormGroup, FormControl, Radio, ButtonToolbar, Button} from 'react-bootstrap';
 import eventApi from '../api/eventApi';
 import TinyMCE from 'react-tinymce';
+import {Prompt} from 'react-router-dom';
 // Actions and store
 import * as EventActions from '../actions/eventActions';
 import EventsStore from '../stores/EventsStore';
@@ -10,38 +11,47 @@ class EventNew extends Component {
   // Initial state
   constructor(props){
     super(props);
-    this.state = {
-      title: '',
-      teaser: '',
-      content: '',
-      status: true,
-      image: ''
-    }
+    this.state = EventsStore.getSelected();
+
     this.handleChange = this.handleChange.bind(this);
     this.handleTinyMCEChange = this.handleTinyMCEChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   // Helper functions to keep track of form changes in state
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-      console.log(this.state);
+    this.setState({
+      [e.target.name]: e.target.value,
+      isBlocking: true
+     });
   };
   handleTinyMCEChange(e) {
-    this.setState({ content: e.target.getContent()});
+    this.setState({
+      content: e.target.getContent(),
+      isBlocking: true
+    });
   };
 
   handleSubmit(e){
     // Stop page refresh
-    return e.preventDefault();
+    e.preventDefault();
     // Dispatch an action
     // TODO: What goes in here?
+    EventActions.createEvent(this.state);
+
+    EventsStore.on("change", ()=> {
+      this.setState(EventsStore.getSelected())
+    })
 
   };
 
+
   render() {
+    // const { isBlocking } = this.state;
 
     return (
       <div>
+
         <div className="container">
           <div className="page-header">
             <h1>New event</h1>
@@ -85,7 +95,6 @@ class EventNew extends Component {
               </Col>
               <Col xs={12} md={4}>
                 <Panel header="Publish">
-
                   <FormGroup
                     name="status"
                     onChange={this.handleChange}
@@ -94,10 +103,8 @@ class EventNew extends Component {
                     {' '}
                     <Radio name="status" value="false" checked={this.state.status === "false"} inline onChange={this.handleChange}>Private</Radio>
                   </FormGroup>
-
                   <ButtonToolbar>
-                  <Button type="submit" onClick={this.handleSubmit} bsStyle="primary">Publish</Button>
-                  <Button bsStyle="danger">Delete</Button>
+                    <Button type="submit" onClick={this.handleSubmit} bsStyle="primary">Publish</Button>
                   </ButtonToolbar>
                 </Panel>
                 <Panel header="Image">
@@ -108,6 +115,17 @@ class EventNew extends Component {
                   onChange={this.handleChange}
                   value={this.state.image}
                 />
+                </Panel>
+                <Panel header="Scheduling">
+                  <label htmlFor="duration">Duration in minutes</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    name="duration"
+                    onChange={this.handleChange}
+                    value={this.state.duration}
+                    min="15"
+                  />
                 </Panel>
               </Col>
             </Row>

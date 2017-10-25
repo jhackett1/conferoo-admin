@@ -5,11 +5,29 @@ class EventsStore extends EventEmitter{
   constructor(){
     super();
     this.events = [];
+    this.selectedEvent = {
+      title: '',
+      teaser: '',
+      content: '',
+      status: true,
+      image: '',
+      duration: 60,
+      isBlocking: ''
+    };
   }
 
   getEventsList(events){
     this.events = events;
     this.emit('change');
+  }
+
+  createEvent(newEvent){
+    this.selectedEvent = newEvent;
+    this.emit('change');
+  }
+
+  getSelected(){
+    return this.selectedEvent;
   }
 
   getAll(){
@@ -20,6 +38,9 @@ class EventsStore extends EventEmitter{
     switch(action.type){
       case "GET_EVENTS_LIST": {
         this.getEventsList(action.events);
+      }
+      case "EVENT_CREATED": {
+        this.createEvent(action.event);
       }
     }
   }
