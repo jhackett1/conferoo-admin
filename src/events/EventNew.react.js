@@ -35,19 +35,13 @@ class EventNew extends Component {
   handleSubmit(e){
     // Stop page refresh
     e.preventDefault();
-    // Dispatch an action
     // TODO: What goes in here?
-    EventActions.createEvent(this.state);
-
-    EventsStore.on("change", ()=> {
-      this.setState(EventsStore.getSelected())
-    })
-
+    EventActions.createEvent(this.state)
   };
-
 
   render() {
     // const { isBlocking } = this.state;
+    // <Prompt when={isBlocking} message="You have unsaved changes. Are you sure you want to leave?" />
 
     return (
       <div>

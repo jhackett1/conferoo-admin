@@ -14,7 +14,14 @@ class EventList extends Component {
     this.state = {
       events: EventsStore.getAll()
     }
+    this.stateUpdater = this.stateUpdater.bind(this);
   };
+
+  stateUpdater(){
+    this.setState({
+      events: EventsStore.getAll()
+    })
+  }
 
   getEventsList(){
     EventActions.getEventsList();
@@ -22,14 +29,18 @@ class EventList extends Component {
 
   // As component mounts to DOM, make the API call
   componentDidMount(){
+    console.log("count", EventsStore.listenerCount('change'))
     // Dispatch action
     this.getEventsList();
+  }
+
+  componentWillMount(){
     // Respond to change in store
-    EventsStore.on("change", ()=> {
-      this.setState({
-        events: EventsStore.getAll()
-      })
-    })
+    EventsStore.on("change", this.stateUpdater)
+  }
+
+  componentWillUnmount(){
+    EventsStore.removeListener("change", this.stateUpdater)
   }
 
   render() {

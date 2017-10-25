@@ -4,16 +4,10 @@ import dispatcher from '../dispatcher/dispatcher';
 class EventsStore extends EventEmitter{
   constructor(){
     super();
+    // Store list of all events
     this.events = [];
-    this.selectedEvent = {
-      title: '',
-      teaser: '',
-      content: '',
-      status: true,
-      image: '',
-      duration: 60,
-      isBlocking: ''
-    };
+    // Store data about the event being created/edited
+    this.selected = {};
   }
 
   getEventsList(events){
@@ -21,26 +15,28 @@ class EventsStore extends EventEmitter{
     this.emit('change');
   }
 
-  createEvent(newEvent){
-    this.selectedEvent = newEvent;
-    this.emit('change');
-  }
-
-  getSelected(){
-    return this.selectedEvent;
-  }
+  // createEvent(newEvent){
+  //   this.selected = newEvent;
+  //   this.emit('change');
+  //   console.log("store updated", newEvent)
+  // }
 
   getAll(){
     return this.events;
+  }
+
+  getSelected(){
+    return this.selected;
   }
 
   handleActions(action){
     switch(action.type){
       case "GET_EVENTS_LIST": {
         this.getEventsList(action.events);
+          console.log('GET_EVENTS_LIST action firing')
       }
       case "EVENT_CREATED": {
-        this.createEvent(action.event);
+  console.log('EVENT_CREATED action firing')
       }
     }
   }
