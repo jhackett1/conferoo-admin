@@ -1,4 +1,4 @@
-// Methods to manage JWTs
+// Methods to store and access the logged in user's token and profile in localStorage
 
 // Access Window object;
 var localStorage = window.localStorage;

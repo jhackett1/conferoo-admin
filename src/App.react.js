@@ -11,6 +11,7 @@ import Login from './login/Login.react';
 import LoginCallback from './login/LoginCallback.react';
 import Dashboard from './dashboard/Dashboard.react';
 import About from './about/About.react';
+import NotFound from './notfound/NotFound.react';
 
 import PostList from './posts/PostList.react';
 import PostNew from './posts/PostNew.react';

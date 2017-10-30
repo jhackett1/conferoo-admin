@@ -14,6 +14,17 @@ class EventForm extends Component {
       );
     });
 
+    const Venues = config.venues.map((venue) => {
+      return(
+        <option value={venue}>{venue}</option>
+      );
+    });
+
+    const Programmes = config.programmes.map((programme) => {
+      return(
+        <option value={programme}>{programme}</option>
+      );
+    });
 
     const Buttons = ()=>{
       if(this.props.mode === "new"){
@@ -90,22 +101,29 @@ class EventForm extends Component {
             <FormGroup>
               <label htmlFor="duration">Programme</label>
               <FormControl
-                type="text"
+                type="select"
+                componentClass="select"
                 placeholder="Name of the programme this event belongs to"
                 name="programme"
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.programme}
-              />
+              >
+                {Programmes}
+              </FormControl>
+
             </FormGroup>
             <FormGroup>
               <label htmlFor="venue">Venue</label>
               <FormControl
-                type="text"
+                type="select"
+                componentClass="select"
                 placeholder="Which room will this event take place in?"
                 name="venue"
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.venue}
-              />
+                >
+                  {Venues}
+                </FormControl>
             </FormGroup>
             <FormGroup>
               <label htmlFor="duration">Duration (minutes)</label>

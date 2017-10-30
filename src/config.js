@@ -8,6 +8,15 @@ var config = {
     "Documentation",
     "Materialism",
     "Astral Projection"
+  ],
+  programmes: [
+    "Thursday",
+    "Friday"
+  ],
+  venues: [
+    'Big Room',
+    'Little Room A',
+    'Little Room B'
   ]
 }
 
