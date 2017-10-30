@@ -4,8 +4,7 @@ import UserService from '../UserService';
 import Toastr from 'toastr';
 
 var host = config.api_host;
-
-// Communicate with the Conferoo API, retrieving and sending event data
+// Communicate with the Conferoo API, retrieving and sending speaker data
 
 // Helper function for building usable error objects, rather than the string
 function errorBuilder(error){
@@ -21,13 +20,13 @@ function networkError(error){
   Toastr.error(`Trouble communicating with server. Please try again later.`)
 }
 
-const EventApi = {
+const SpeakerApi = {
 
-  // Get all events
-  getEventsList: function(cb){
+  // Get all speakers
+  getSpeakersList: function(cb){
     Axios({
       method: 'get',
-      url: host + '/events/',
+      url: host + '/speakers/',
       headers: {
         Authorization: UserService.getToken()
       }
@@ -44,11 +43,11 @@ const EventApi = {
       });
   },
 
-  // Get single event by ID
-  getSingleEvent: function(eventId, cb){
+  // Get single speaker by ID
+  getSingleSpeaker: function(speakerId, cb){
     Axios({
       method: 'get',
-      url: host + '/events/' + eventId,
+      url: host + '/speakers/' + speakerId,
       headers: {
         Authorization: UserService.getToken()
       }
@@ -65,20 +64,21 @@ const EventApi = {
       });
   },
 
-  // Create new event, passing in JSON
-  createEvent: function(newEvent, cb){
+  // Create new speaker, passing in JSON
+  createSpeaker: function(newSpeaker, cb){
     Axios({
       method: 'post',
-      url: host + '/events/',
+      url: host + '/speakers/',
       headers: {
         Authorization: UserService.getToken()
       },
-      data: newEvent
+      data: newSpeaker
     })
       .then(function (response) {
         return cb(null, response.data)
       })
       .catch(function (error) {
+        console.log(error.response)
         if(!error.statusCode){
           return networkError();
         } else {
@@ -87,15 +87,15 @@ const EventApi = {
       });
   },
 
-  // Update an existing event by ID, passing in new JSON key-values to update
-  updateEvent: function(eventId, updatedEvent, cb){
+  // Update an existing speaker by ID, passing in new JSON key-values to update
+  updateSpeaker: function(speakerId, updatedSpeaker, cb){
     Axios({
       method: 'patch',
-      url: host + '/events/' + eventId,
+      url: host + '/speakers/' + speakerId,
       headers: {
         Authorization: UserService.getToken()
       },
-      data: updatedEvent
+      data: updatedSpeaker
     })
       .then(function (response) {
         return cb(null, response.data)
@@ -109,11 +109,11 @@ const EventApi = {
       });
   },
 
-  // Delete an event by ID
-  deleteEvent:  function(eventId, cb){
+  // Delete an speaker by ID
+  deleteSpeaker:  function(speakerId, cb){
     Axios({
       method: 'delete',
-      url: host + '/events/' + eventId,
+      url: host + '/speakers/' + speakerId,
       headers: {
         Authorization: UserService.getToken()
       }
@@ -131,4 +131,4 @@ const EventApi = {
   }
 };
 
-export default EventApi;
+export default SpeakerApi;

@@ -3,10 +3,34 @@
 }
 
 
-.input-lg, .mce-tinymce.mce-container.mce-panel{
-  margin-bottom: 22px
+.input-lg, .mce-tinymce.mce-container.mce-panel, .rt-editor{
+  margin-bottom: 22px;
 }
 
 footer{
   margin-top: 44px;
+}
+
+div.media-left img {
+  width: 80px;
+}
+
+
+img.profile-thumbnail{
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  background-color: #efefef
+}
+
+.logout-items a{
+  display: inline;
+}
+
+.logout-items .btn{
+  display: none;
+}
+
+.logout-items .btn.show{
+  display: inline !important;
 }

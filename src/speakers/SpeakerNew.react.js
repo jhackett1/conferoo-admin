@@ -1,67 +1,55 @@
 import React, { Component } from 'react';
-import EventApi from '../api/eventApi';
+import SpeakerApi from '../api/speakerApi';
 import {Redirect} from 'react-router-dom';
+import 'toastr/build/toastr.css';
 import Toastr from 'toastr';
-import EventForm from './EventForm.react';
+import SpeakerForm from './SpeakerForm.react';
 import {Grid} from 'react-bootstrap';
 import {Prompt} from 'react-router-dom';
 
-class EventNew extends Component {
+class SpeakerNew extends Component {
   // Initial state
   constructor(props){
     super(props);
     // Set initial state
     this.state = {
       redirect: false,
-      newEvent: {
-        published: 'public'
+      newSpeaker: {
+        published: true
       },
-      content: '',
       isBlocking: false
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
-    this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   // Helper functions to keep track of form changes in state
   handleChange(e) {
-    var temp = this.state.newEvent;
+    var temp = this.state.newSpeaker;
     temp[e.target.name] = e.target.value;
     this.setState({
-      newEvent: temp,
+      newSpeaker: temp,
       isBlocking: true
      });
   };
-  // Save Quill changes to a higher order key of state, to prevent converting the value from a Delta to a string, which breaks Quill
-  handleQuillChange(value){
-    this.setState({
-      content: value,
-      isBlocking: true
-    });
-  }
 
   handleSubmit(e){
     // Stop page refresh
     e.preventDefault();
-    //Add content from Quill into the content to event, along with the date of creation
-    var newEvent = this.state.newEvent;
-    newEvent.content = this.state.content;
-    newEvent.createdAt = new Date();
     // Make API call
-    EventApi.createEvent(newEvent, (err, newEvent)=>{
+    SpeakerApi.createSpeaker(this.state.newSpeaker, (err, newSpeaker)=>{
       if(err){
         Toastr.error("Whoops, there was an error: " + err.status);
       } else {
         // Toast notification
-        Toastr.success(`<strong>${newEvent.title}</strong> has been successfully created.`);
+        Toastr.success(`${newSpeaker.name} has been successfully created.`);
         // We are no longer blocked
-        var temp = this.state.newEvent;
+        var temp = this.state.newSpeaker;
         this.setState({
-          newEvent: temp,
+          newSpeaker: temp,
           isBlocking: false,
-          redirect: "/events/edit/" + newEvent._id
+          redirect: "/speakers/edit/" + newSpeaker._id
         });
       }
     })
@@ -80,15 +68,13 @@ class EventNew extends Component {
           <Prompt when={isBlocking} message="You have unsaved changes. Are you sure you want to leave?" />
           <div className="container">
             <div className="page-header">
-              <h1>New event</h1>
+              <h1>New speaker</h1>
             </div>
           </div>
           <Grid>
-            <EventForm
-              newEvent={this.state.newEvent}
+            <SpeakerForm
+              newSpeaker={this.state.newSpeaker}
               handleChange={this.handleChange}
-              quillValue={this.state.content}
-              handleQuillChange={this.handleQuillChange}
               handleSubmit={this.handleSubmit}
               isBlocking={this.state.isBlocking}
               mode="new"
@@ -101,4 +87,4 @@ class EventNew extends Component {
   }
 }
 
-export default EventNew;
+export default SpeakerNew;

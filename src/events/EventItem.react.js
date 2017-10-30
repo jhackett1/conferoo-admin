@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Humandate from 'human-date';
 import {Link} from 'react-router-dom';
 
 class EventItem extends Component {
@@ -8,7 +9,7 @@ class EventItem extends Component {
     const event = this.props.event;
 
     return (
-      <Link to={"/events/edit/" + event._id} key={event._id} className="list-group-item">
+      <Link to={"/events/edit/" + event._id} key={event._id} className={event.published == 'private' ? 'list-group-item-info list-group-item' : 'list-group-item'}>
         <div className="media">
           <div className="media-left media-middle">
              <img className="media-object" src={event.image}/>
@@ -16,6 +17,7 @@ class EventItem extends Component {
           <div className="media-body">
           <h4 className="list-group-item-heading">{event.title}</h4>
           <p className="list-group-item-text">{event.teaser}</p>
+          <small>{event.time} | {event.programme}</small>
           </div>
         </div>
       </Link>

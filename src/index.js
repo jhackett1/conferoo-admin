@@ -8,6 +8,7 @@ import App from './App.react';
 // Get styles styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import 'toastr/build/toastr.css';
 
 // Get service worker
 import registerServiceWorker from './registerServiceWorker';

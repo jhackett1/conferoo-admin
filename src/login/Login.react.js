@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Row, Col, Jumbotron, Button, Glyphicon } from 'react-bootstrap';
-
-const clientId = "826165205387-b4u0mtq8diena38nabgqrd667kefjnfr.apps.googleusercontent.com";
+import config from '../config';
 
 class Login extends Component {
+
+  //Send user to Google on click
+  handleClick(){
+    var urlBuilder = [];
+    urlBuilder.push('response_type=code', `client_id=${config.google_client_id}`, `redirect_uri=${window.location.origin}/login/callback`, 'scope=profile email');
+    const url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlBuilder.join('&');
+    // Open the popup window
+    window.location.href = url;
+  }
+
   render() {
-
-    function handleClick(){
-      var urlBuilder = [];
-      urlBuilder.push('response_type=code', `client_id=${clientId}`, `redirect_uri=${window.location.origin}`, 'scope=profile email');
-      const url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlBuilder.join('&');
-      // Open the popup window
-      window.location.href = url;
-    }
-
     return (
       <div className="container">
         <Row className="show-grid">
@@ -22,7 +22,7 @@ class Login extends Component {
             <Jumbotron className="text-center">
               <h1>Conferoo Publisher</h1>
               <p className="lead">Log in for conference organisers</p>
-              <Button type="button" onClick={handleClick} className="btn btn-primary"><Glyphicon glyph="google" /> Log in with Google</Button>
+              <Button type="button" onClick={this.handleClick} className="btn btn-primary"><Glyphicon glyph="google" /> Log in with Google</Button>
             </Jumbotron>
           </Col>
           <Col md={2}></Col>
@@ -32,16 +32,4 @@ class Login extends Component {
   }
 }
 
-// Handle sign in/out methods and keep track of user's login state
-const authentication = {
-  isLoggedin: false,
-  login(){
-    // isLoggedin = true;
-  },
-  logout(){
-    // isLoggedin = false;
-  }
-}
-
-export { authentication }
 export default Login;

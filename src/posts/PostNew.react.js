@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import EventApi from '../api/eventApi';
+import PostApi from '../api/postApi';
 import {Redirect} from 'react-router-dom';
 import Toastr from 'toastr';
-import EventForm from './EventForm.react';
+import PostForm from './PostForm.react';
 import {Grid} from 'react-bootstrap';
 import {Prompt} from 'react-router-dom';
 
-class EventNew extends Component {
+class PostNew extends Component {
   // Initial state
   constructor(props){
     super(props);
     // Set initial state
     this.state = {
       redirect: false,
-      newEvent: {
+      newPost: {
         published: 'public'
       },
       content: '',
@@ -27,10 +27,10 @@ class EventNew extends Component {
 
   // Helper functions to keep track of form changes in state
   handleChange(e) {
-    var temp = this.state.newEvent;
+    var temp = this.state.newPost;
     temp[e.target.name] = e.target.value;
     this.setState({
-      newEvent: temp,
+      newPost: temp,
       isBlocking: true
      });
   };
@@ -45,23 +45,23 @@ class EventNew extends Component {
   handleSubmit(e){
     // Stop page refresh
     e.preventDefault();
-    //Add content from Quill into the content to event, along with the date of creation
-    var newEvent = this.state.newEvent;
-    newEvent.content = this.state.content;
-    newEvent.createdAt = new Date();
+    //Add content from Quill into the content to post, along with the date of creation
+    var newPost = this.state.newPost;
+    newPost.content = this.state.content;
+    newPost.createdAt = new Date();
     // Make API call
-    EventApi.createEvent(newEvent, (err, newEvent)=>{
+    PostApi.createPost(newPost, (err, newPost)=>{
       if(err){
         Toastr.error("Whoops, there was an error: " + err.status);
       } else {
         // Toast notification
-        Toastr.success(`<strong>${newEvent.title}</strong> has been successfully created.`);
+        Toastr.success(`<strong>${newPost.title}</strong> has been successfully created.`);
         // We are no longer blocked
-        var temp = this.state.newEvent;
+        var temp = this.state.newPost;
         this.setState({
-          newEvent: temp,
+          newPost: temp,
           isBlocking: false,
-          redirect: "/events/edit/" + newEvent._id
+          redirect: "/posts/edit/" + newPost._id
         });
       }
     })
@@ -80,12 +80,12 @@ class EventNew extends Component {
           <Prompt when={isBlocking} message="You have unsaved changes. Are you sure you want to leave?" />
           <div className="container">
             <div className="page-header">
-              <h1>New event</h1>
+              <h1>New post</h1>
             </div>
           </div>
           <Grid>
-            <EventForm
-              newEvent={this.state.newEvent}
+            <PostForm
+              newPost={this.state.newPost}
               handleChange={this.handleChange}
               quillValue={this.state.content}
               handleQuillChange={this.handleQuillChange}
@@ -101,4 +101,4 @@ class EventNew extends Component {
   }
 }
 
-export default EventNew;
+export default PostNew;

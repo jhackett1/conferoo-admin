@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
-import EventApi from '../api/eventApi';
+import PostApi from '../api/postApi';
 import { ListGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import EventItem from './EventItem.react';
+import PostItem from './PostItem.react';
 
-class EventList extends Component {
+class PostList extends Component {
   // Initial state
   constructor(props){
     super(props);
     this.state = {
-      events: []
+      posts: []
     }
   };
 
   // As component mounts to DOM, make the initial API call and set the state
   componentDidMount(){
-    EventApi.getEventsList((err, list)=>{
+    PostApi.getPostsList((err, list)=>{
       if(err) console.log(err);
-      this.setState({events: list})
+      this.setState({posts: list})
     })
   }
 
 
   render() {
     // Create list elements
-    const List = this.state.events.map((event) => {
+    const List = this.state.posts.map((post) => {
       return(
-        <EventItem key={event._id} event={event}/>
+        <PostItem key={post._id} post={post}/>
       )
     })
     // And return the list
@@ -35,10 +35,10 @@ class EventList extends Component {
         <div className="page-header">
           <div className='btn-toolbar pull-right'>
             <div className='btn-group'>
-                <Link to="/events/new" className="btn btn-primary">New event</Link>
+                <Link to="/posts/new" className="btn btn-primary">New post</Link>
             </div>
           </div>
-          <h1>All events</h1>
+          <h1>All posts</h1>
         </div>
         <ListGroup>{List}</ListGroup>
       </div>
@@ -46,4 +46,4 @@ class EventList extends Component {
   }
 }
 
-export default EventList;
+export default PostList;

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import EventApi from '../api/eventApi';
-import EventForm from './EventForm.react';
+import PostApi from '../api/postApi';
+import PostForm from './PostForm.react';
 import {Grid} from 'react-bootstrap';
 import {Prompt} from 'react-router-dom';
 import Toastr from 'toastr';
 
-class EventEdit extends Component {
+class PostEdit extends Component {
   // Initial state
   constructor(props){
     super(props);
     // Set initial state
     this.state = {
       redirect: false,
-      updatedEvent: {
+      updatedPost: {
         published: true
       },
       content: '',
@@ -26,13 +26,13 @@ class EventEdit extends Component {
   };
 
   componentWillMount(){
-    // Update state with selected event data, populating form
-    EventApi.getSingleEvent(this.props.match.params.id, (err, event)=>{
+    // Update state with selected post data, populating form
+    PostApi.getSinglePost(this.props.match.params.id, (err, post)=>{
       if(err){
       } else {
         this.setState({
-          updatedEvent: event,
-          content: event.content,
+          updatedPost: post,
+          content: post.content,
           isBlocking: false
          });
       }
@@ -41,10 +41,10 @@ class EventEdit extends Component {
 
   // Helper functions to keep track of form changes in state
   handleChange(e) {
-    var temp = this.state.updatedEvent;
+    var temp = this.state.updatedPost;
     temp[e.target.name] = e.target.value;
     this.setState({
-      updatedEvent: temp,
+      updatedPost: temp,
       isBlocking: true
      });
   };
@@ -58,17 +58,17 @@ class EventEdit extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // Prepare the updated event payload, inserting the new content from Quill
-    var payload = this.state.updatedEvent;
+    // Prepare the updated post payload, inserting the new content from Quill
+    var payload = this.state.updatedPost;
     payload.content = this.state.content;
 
     // Make API call
-    EventApi.updateEvent(this.props.match.params.id, payload, (err, updatedEvent)=>{
+    PostApi.updatePost(this.props.match.params.id, payload, (err, updatedPost)=>{
       if(err){
         Toastr.error("Whoops, there was an error: " + err.status);
       } else {
         // Toast notification
-        Toastr.success(`<strong>${updatedEvent.title}</strong> has been successfully updated.`);
+        Toastr.success(`<strong>${updatedPost.title}</strong> has been successfully updated.`);
         // We are no longer blocked
         this.setState({
           isBlocking: false
@@ -77,18 +77,18 @@ class EventEdit extends Component {
     })
   };
 
-  // Delete the selected event
+  // Delete the selected post
   handleDelete(){
-    var response = window.confirm("Are you sure you want to permenantly delete this event?");
+    var response = window.confirm("Are you sure you want to permenantly delete this post?");
     if (response == true) {
-      EventApi.deleteEvent(this.props.match.params.id, (err, deletedEvent)=>{
+      PostApi.deletePost(this.props.match.params.id, (err, deletedPost)=>{
         if(err){
           Toastr.error("Whoops, there was an error: " + err.status);
         } else {
           // Toast notification
-          Toastr.success(`That event has been successfully deleted.`);
+          Toastr.success(`That post has been successfully deleted.`);
           // Go back to the list
-          this.props.history.push('/events')
+          this.props.history.push('/posts')
         }
       })
     }
@@ -102,12 +102,12 @@ class EventEdit extends Component {
         <Prompt when={isBlocking} message="You may have unsaved changes. Are you sure you want to leave?" />
         <div className="container">
           <div className="page-header">
-            <h1>Edit event</h1>
+            <h1>Edit post</h1>
           </div>
         </div>
         <Grid>
-          <EventForm
-            newEvent={this.state.updatedEvent}
+          <PostForm
+            newPost={this.state.updatedPost}
             handleChange={this.handleChange}
             quillValue={this.state.content}
             handleQuillChange={this.handleQuillChange}
@@ -122,4 +122,4 @@ class EventEdit extends Component {
   }
 }
 
-export default EventEdit;
+export default PostEdit;

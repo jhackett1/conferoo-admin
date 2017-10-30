@@ -4,8 +4,7 @@ import UserService from '../UserService';
 import Toastr from 'toastr';
 
 var host = config.api_host;
-
-// Communicate with the Conferoo API, retrieving and sending event data
+// Communicate with the Conferoo API, retrieving and sending media data
 
 // Helper function for building usable error objects, rather than the string
 function errorBuilder(error){
@@ -21,13 +20,13 @@ function networkError(error){
   Toastr.error(`Trouble communicating with server. Please try again later.`)
 }
 
-const EventApi = {
+const MediaApi = {
 
-  // Get all events
-  getEventsList: function(cb){
+  // Get all media
+  getMediaList: function(cb){
     Axios({
       method: 'get',
-      url: host + '/events/',
+      url: host + '/media/',
       headers: {
         Authorization: UserService.getToken()
       }
@@ -44,14 +43,20 @@ const EventApi = {
       });
   },
 
-  // Get single event by ID
-  getSingleEvent: function(eventId, cb){
-    Axios({
-      method: 'get',
-      url: host + '/events/' + eventId,
-      headers: {
-        Authorization: UserService.getToken()
-      }
+  // Create new media, passing in JSON
+  createMedia: function(newMedia, cb, uploadProgress){
+    // Put file in formdata
+    const formData = new FormData();
+    formData.append('upload',newMedia)
+    // Post the upload to the server
+    Axios.post(host + '/media/', formData, {
+        headers: {
+          'Authorization': UserService.getToken(),
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvt) => {
+          uploadProgress(progressEvt.loaded)
+        }
     })
       .then(function (response) {
         return cb(null, response.data)
@@ -63,57 +68,14 @@ const EventApi = {
           return cb(errorBuilder(error), null);
         }
       });
+
   },
 
-  // Create new event, passing in JSON
-  createEvent: function(newEvent, cb){
-    Axios({
-      method: 'post',
-      url: host + '/events/',
-      headers: {
-        Authorization: UserService.getToken()
-      },
-      data: newEvent
-    })
-      .then(function (response) {
-        return cb(null, response.data)
-      })
-      .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
-        } else {
-          return cb(errorBuilder(error), null);
-        }
-      });
-  },
-
-  // Update an existing event by ID, passing in new JSON key-values to update
-  updateEvent: function(eventId, updatedEvent, cb){
-    Axios({
-      method: 'patch',
-      url: host + '/events/' + eventId,
-      headers: {
-        Authorization: UserService.getToken()
-      },
-      data: updatedEvent
-    })
-      .then(function (response) {
-        return cb(null, response.data)
-      })
-      .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
-        } else {
-          return cb(errorBuilder(error), null);
-        }
-      });
-  },
-
-  // Delete an event by ID
-  deleteEvent:  function(eventId, cb){
+  // Delete an media by ID
+  deleteMedia:  function(mediaId, cb){
     Axios({
       method: 'delete',
-      url: host + '/events/' + eventId,
+      url: host + '/media/' + mediaId,
       headers: {
         Authorization: UserService.getToken()
       }
@@ -131,4 +93,4 @@ const EventApi = {
   }
 };
 
-export default EventApi;
+export default MediaApi;
