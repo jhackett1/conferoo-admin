@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio} from 'react-bootstrap';
+import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox} from 'react-bootstrap';
 import Quill from '../partials/Quill.react';
+import config from '../config';
+
+import MediaPicker from '../partials/MediaPicker.react';
+import SpeakerPicker from '../partials/SpeakerPicker.react';
 
 class PostForm extends Component {
   render() {
     const isBlocking = this.props.isBlocking;
 
+    // Get a list of themes to populate a checkbox control
+    const Themes = config.themes.map((theme) => {
+      return(
+        <Checkbox
+          value={theme}
+          onChange={this.props.handleCheckboxChange.bind(this)}
+          checked={this.props.newPost.themes.includes(theme)}
+        >{theme}</Checkbox>
+      );
+    });
+
+    // Show the right buttons for 'new' or 'edit' mode.
     const Buttons = ()=>{
       if(this.props.mode === "new"){
         return (
@@ -60,22 +76,35 @@ class PostForm extends Component {
               <Buttons/>
             </Panel>
             <Panel header="Image">
-              <FormControl
-                type="text"
-                placeholder="URL of featured image"
-                name="image"
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  placeholder="Enter URL of featured image"
+                  name="image"
+                  onChange={this.props.handleChange}
+                  value={this.props.newPost.image}
+                />
+              </FormGroup>
+              <MediaPicker
                 onChange={this.props.handleChange}
-                value={this.props.newPost.image}
               />
             </Panel>
             <Panel header="Author">
-              <FormControl
-                type="text"
-                placeholder="Name of the speaker who wrote this post"
-                name="author"
-                onChange={this.props.handleChange}
-                value={this.props.newPost.author}
-              />
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  placeholder="Name of the speaker who wrote this post"
+                  name="author"
+                  onChange={this.props.handleChange}
+                  value={this.props.newPost.author}
+                />
+              </FormGroup>
+              <SpeakerPicker name="author" onChange={this.props.handleChange}/>
+            </Panel>
+            <Panel header="Themes">
+              <FormGroup name="themes">
+                {Themes}
+              </FormGroup>
             </Panel>
           </Col>
         </Row>

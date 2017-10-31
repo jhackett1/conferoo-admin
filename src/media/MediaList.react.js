@@ -15,7 +15,6 @@ class MediaList extends Component {
     }
     this.showUploader = this.showUploader.bind(this);
     this.hideUploader = this.hideUploader.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.getList = this.getList.bind(this);
   }
@@ -63,13 +62,6 @@ class MediaList extends Component {
 
   }
 
-  handleClick(i){
-    var textToCopy = document.querySelector('input#tocopy')
-    textToCopy.value = this.state.media[i].sources.full;
-    textToCopy.select();
-    document.execCommand("Copy");
-    Toastr.success("URL copied to the clipboard.");
-  }
 
   render(){
     const List = this.state.media.map((medium, i) => {
@@ -82,7 +74,6 @@ class MediaList extends Component {
               <div className="media-body">
               <ButtonToolbar className="pull-right">
                 <ButtonGroup bsSize="small">
-                  <Button onClick={this.handleClick.bind(this, i)}><span className="glyphicon glyphicon-copy"></span> Copy to clipboard</Button>
                   <Button onClick={this.handleDelete.bind(this, i)}bsStyle="danger">Delete</Button>
                 </ButtonGroup>
               </ButtonToolbar>
@@ -105,7 +96,7 @@ class MediaList extends Component {
                   <Button onClick={this.showUploader} className="btn btn-primary">New upload</Button>
               </div>
             </div>
-            <h1>All media</h1><input type="text" id="tocopy"/>
+            <h1>All media</h1>
           </div>
           <ListGroup>{List}</ListGroup>
         </div>

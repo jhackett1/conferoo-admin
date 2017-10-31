@@ -3,29 +3,35 @@ import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Ra
 import Quill from '../partials/Quill.react';
 import config from '../config';
 
+import MediaPicker from '../partials/MediaPicker.react';
+import SpeakerPicker from '../partials/SpeakerPicker.react';
+
 class EventForm extends Component {
   render() {
     const isBlocking = this.props.isBlocking;
 
-
+    // Get a list of themes to populate a checkbox control
     const Themes = config.themes.map((theme) => {
       return(
-        <Checkbox value={theme}>{theme}</Checkbox>
+        <Checkbox
+          value={theme}
+          onChange={this.props.handleCheckboxChange.bind(this)}
+          checked={this.props.newEvent.themes.includes(theme)}
+        >{theme}</Checkbox>
       );
     });
 
+    // Get a list of venues to populate a dropdown select control
     const Venues = config.venues.map((venue) => {
-      return(
-        <option value={venue}>{venue}</option>
-      );
+      return(<option value={venue}>{venue}</option>);
     });
 
+    // Get a list of programmes to populate a dropdown select control
     const Programmes = config.programmes.map((programme) => {
-      return(
-        <option value={programme}>{programme}</option>
-      );
+      return(<option value={programme}>{programme}</option>);
     });
 
+    // Show the right buttons for 'new' or 'edit' mode.
     const Buttons = ()=>{
       if(this.props.mode === "new"){
         return (
@@ -80,22 +86,30 @@ class EventForm extends Component {
               <Buttons/>
             </Panel>
             <Panel header="Image">
-              <FormControl
-                type="text"
-                placeholder="URL of featured image"
-                name="image"
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  placeholder="Enter URL of featured image"
+                  name="image"
+                  onChange={this.props.handleChange}
+                  value={this.props.newEvent.image}
+                />
+              </FormGroup>
+              <MediaPicker
                 onChange={this.props.handleChange}
-                value={this.props.newEvent.image}
               />
             </Panel>
             <Panel header="Speaker">
-              <FormControl
-                type="text"
-                placeholder="Name of this event's speaker"
-                name="speaker"
-                onChange={this.props.handleChange}
-                value={this.props.newEvent.speaker}
-              />
+              <FormGroup>
+                <FormControl
+                  type="text"
+                  placeholder="Name of this event's speaker"
+                  name="speaker"
+                  onChange={this.props.handleChange}
+                  value={this.props.newEvent.speaker}
+                />
+              </FormGroup>
+              <SpeakerPicker name="speaker" onChange={this.props.handleChange}/>
             </Panel>
             <Panel header="Scheduling">
             <FormGroup>
@@ -148,8 +162,7 @@ class EventForm extends Component {
             </FormGroup>
             </Panel>
             <Panel header="Themes">
-              // TODO basic implementation, not yet tied into state or anything else
-              <FormGroup>
+              <FormGroup name="themes">
                 {Themes}
               </FormGroup>
             </Panel>

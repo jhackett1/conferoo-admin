@@ -3,7 +3,7 @@ import config from '../config';
 import UserService from '../UserService';
 import Toastr from 'toastr';
 
-var host = config.api_host;
+var host = config.api_host + config.api_path;
 
 // Communicate with the Conferoo API, retrieving and sending event data
 
@@ -36,10 +36,11 @@ const EventApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
+        // Did a HTTP response come back? i.e. is the network/server up?
+        if(error.response){
+          errorBuilder(error)
         } else {
-          return cb(errorBuilder(error), null);
+          return networkError();
         }
       });
   },
@@ -57,10 +58,11 @@ const EventApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
+        // Did a HTTP response come back? i.e. is the network/server up?
+        if(error.response){
+          errorBuilder(error)
         } else {
-          return cb(errorBuilder(error), null);
+          return networkError();
         }
       });
   },
@@ -79,10 +81,11 @@ const EventApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
+        // Did a HTTP response come back? i.e. is the network/server up?
+        if(error.response){
+          errorBuilder(error)
         } else {
-          return cb(errorBuilder(error), null);
+          return networkError();
         }
       });
   },
@@ -101,10 +104,11 @@ const EventApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
+        // Did a HTTP response come back? i.e. is the network/server up?
+        if(error.response){
+          errorBuilder(error)
         } else {
-          return cb(errorBuilder(error), null);
+          return networkError();
         }
       });
   },
@@ -122,10 +126,11 @@ const EventApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
-        if(!error.statusCode){
-          return networkError();
+        // Did a HTTP response come back? i.e. is the network/server up?
+        if(error.response){
+          errorBuilder(error)
         } else {
-          return cb(errorBuilder(error), null);
+          return networkError();
         }
       });
   }

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import UserService from '../UserService';
 
 class Dashboard extends Component {
-  render() {
 
-    console.log(UserService.getProfile());
+  render() {
 
     return (
       <div className="container">

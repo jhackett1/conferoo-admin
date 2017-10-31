@@ -36,7 +36,12 @@ class SpeakerEdit extends Component {
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedSpeaker;
-    temp[e.target.name] = e.target.value;
+    // Support image picker
+    if(e.mediaPicker){
+      temp.image = e.chosenMedia;
+    } else {
+      temp[e.target.name] = e.target.value;
+    }
     this.setState({
       updatedSpeaker: temp,
       isBlocking: true

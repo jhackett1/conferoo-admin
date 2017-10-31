@@ -36,9 +36,9 @@ class Header extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-            <li><Link to="/posts">Posts</Link></li>
             <li><Link to="/events">Events</Link></li>
             <li><Link to="/speakers">Speakers</Link></li>
+            <li><Link to="/posts">Posts</Link></li>            
             <li><Link to="/media">Media</Link></li>
             <li><Link to="/about">About</Link></li>
         </Nav>

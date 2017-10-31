@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button} from 'react-bootstrap';
+import MediaPicker from '../partials/MediaPicker.react';
 
 class SpeakerForm extends Component {
 
@@ -52,13 +53,18 @@ class SpeakerForm extends Component {
                   <Buttons/>
                 </Panel>
                 <Panel header="Image">
-                <FormControl
-                  type="text"
-                  placeholder="URL of speaker's photograph"
-                  name="image"
-                  onChange={this.props.handleChange}
-                  value={this.props.newSpeaker.image}
-                />
+                  <FormGroup>
+                    <FormControl
+                      type="text"
+                      placeholder="URL of speaker's photograph"
+                      name="image"
+                      onChange={this.props.handleChange}
+                      value={this.props.newSpeaker.image}
+                    />
+                  </FormGroup>
+                  <MediaPicker
+                    onChange={this.props.handleChange}
+                  />
                 </Panel>
               </Col>
             </Row>

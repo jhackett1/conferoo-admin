@@ -14,7 +14,8 @@ class PostNew extends Component {
     this.state = {
       redirect: false,
       newPost: {
-        published: 'public'
+        published: 'public',
+        themes: []
       },
       content: '',
       isBlocking: false
@@ -22,13 +23,21 @@ class PostNew extends Component {
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
     this.handleQuillChange = this.handleQuillChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.newPost;
-    temp[e.target.name] = e.target.value;
+    // Support image and speaker pickers
+    if(e.mediaPicker){
+      temp.image = e.chosenMedia;
+    } else if (e.speakerPicker) {
+      temp.author = e.chosenSpeaker;
+    } else {
+      temp[e.target.name] = e.target.value;
+    }
     this.setState({
       newPost: temp,
       isBlocking: true
@@ -40,6 +49,27 @@ class PostNew extends Component {
       content: value,
       isBlocking: true
     });
+  }
+  handleCheckboxChange(e) {
+    const temp = this.state.newPost;
+    // current array of options
+    const themes = temp.themes;
+    let index;
+    // check if the check box is checked or unchecked
+    if (e.target.checked) {
+      // add the numerical value of the checkbox to options array
+      themes.push(e.target.value)
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = themes.indexOf(e.target.value)
+      themes.splice(index, 1)
+    }
+    temp.themes = themes;
+    // update the state with the new array of options
+    this.setState({
+      newPost: temp,
+      isBlocking: true
+     });
   }
 
   handleSubmit(e){
@@ -89,6 +119,7 @@ class PostNew extends Component {
               handleChange={this.handleChange}
               quillValue={this.state.content}
               handleQuillChange={this.handleQuillChange}
+              handleCheckboxChange={this.handleCheckboxChange}
               handleSubmit={this.handleSubmit}
               isBlocking={this.state.isBlocking}
               mode="new"
