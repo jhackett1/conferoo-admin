@@ -34,6 +34,7 @@ class Quill extends React.Component {
 
   render() {
     return (
+      <div>
       <ReactQuill
         value={this.props.value}
         onChange={this.props.onChange}
@@ -41,6 +42,7 @@ class Quill extends React.Component {
         modules={this.modules}
         formats={this.formats}
       />
+      </div>
     )
   }
 }
