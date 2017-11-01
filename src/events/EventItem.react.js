@@ -19,7 +19,7 @@ class EventItem extends Component {
 
     const PreviewImage = () => {
       // Check whether the image is hosted on the API server first (i.e. does a preview exist?)
-      if(event.image.startsWith(config.api_host)){
+      if(event.image && event.image.startsWith(config.api_host)){
         // If so, take the supplied URL and fiddle it to return the preview instead
         var split = event.image.split('uploads');
         var previewImageURL = split[0] + 'uploads/previews' + split[1];

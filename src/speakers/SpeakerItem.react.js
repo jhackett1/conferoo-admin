@@ -10,7 +10,7 @@ class SpeakerItem extends Component {
 
     const PreviewImage = () => {
       // Check whether the image is hosted on the API server first (i.e. does a preview exist?)
-      if(speaker.image.startsWith(config.api_host)){
+      if(speaker.image && speaker.image.startsWith(config.api_host)){
         // If so, take the supplied URL and fiddle it to return the preview instead
         var split = speaker.image.split('uploads');
         var previewImageURL = split[0] + 'uploads/previews' + split[1];
