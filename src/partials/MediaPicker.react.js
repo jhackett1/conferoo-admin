@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Modal, Button, Form, FormControl} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import MediaApi from '../api/mediaApi';
-import Humandate from 'human-date';
 import './mediapicker.css';
 
 class MediaPicker extends Component {
@@ -60,7 +59,7 @@ class MediaPicker extends Component {
           e.target.classList.add('selected')
           selectMedia(medium.sources.full)
         }}>
-          <img src={medium.sources.preview}/>
+          <img alt={medium.name} src={medium.sources.preview}/>
         </li>
       )
     })

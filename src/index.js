@@ -7,6 +7,7 @@ import App from './App.react';
 
 // Get styles styles
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './theme.css';
 import './index.css';
 import 'toastr/build/toastr.css';
 

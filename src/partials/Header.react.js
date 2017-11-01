@@ -17,7 +17,7 @@ class Header extends Component {
                         history.push('/');
                       }}>
             <span className="glyphicon glyphicon-log-out"></span> Log Out
-            <Image className="profile-thumbnail" src={UserService.getProfile().image} circle/>
+            <Image className="profile-thumbnail" src={UserService.getProfile().image ? UserService.getProfile().image : '/user.png'} circle/>
           </a>
         </li>
       ) : (
@@ -32,7 +32,7 @@ class Header extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/" className="navbar-brand">Conferoo Publisher</Link>
+            <Link to="/" className="navbar-brand"><img alt="Conferoo Publisher" src="/logo.png"/></Link>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
@@ -40,7 +40,7 @@ class Header extends Component {
             <li><Link to="/speakers">Speakers</Link></li>
             <li><Link to="/posts">Posts</Link></li>
             <li><Link to="/media">Media</Link></li>
-            <li><Link to="/users">Users</Link></li>            
+            <li><Link to="/users">Users</Link></li>
             <li><Link to="/about">About</Link></li>
         </Nav>
         <Nav className='navbar-right'>

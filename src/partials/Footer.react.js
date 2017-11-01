@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="container-fluid text-center">
-        <p>Conferoo version 0.1 / <Link to="/">Built with love</Link></p>
+        <p>Conferoo Publisher 0.1 / <Link to="/">Built with love</Link></p>
       </footer>
     );
   }

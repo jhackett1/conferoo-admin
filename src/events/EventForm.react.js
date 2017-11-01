@@ -80,8 +80,8 @@ class EventForm extends Component {
           <Col xs={12} md={4}>
             <Panel header="Publish" className="panel-primary">
               <FormGroup onChange={this.props.handleChange.bind(this)}>
-                <Radio name="published" value='public' checked={this.props.newEvent.published == 'public' ? 'true' : ''} inline>Public</Radio>
-                <Radio name="published" value='private' checked={this.props.newEvent.published == 'private' ? 'true' : ''} inline>Private</Radio>
+                <Radio name="published" value='public' checked={this.props.newEvent.published === 'public' ? 'true' : ''} inline>Public</Radio>
+                <Radio name="published" value='private' checked={this.props.newEvent.published === 'private' ? 'true' : ''} inline>Private</Radio>
               </FormGroup>
               <Buttons/>
             </Panel>

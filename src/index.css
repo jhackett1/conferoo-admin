@@ -2,6 +2,10 @@
   border-radius: 0;
 }
 
+.navbar .navbar-brand img{
+  max-height: 100%
+}
+
 
 .input-lg, .mce-tinymce.mce-container.mce-panel, .rt-editor{
   margin-bottom: 22px;

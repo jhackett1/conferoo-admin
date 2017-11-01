@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import config from '../config';
 
 class UserItem extends Component {
 
@@ -21,7 +19,7 @@ class UserItem extends Component {
         <AdminBadge/>
         <div className="media">
           <div className="media-left media-middle">
-             <img  className="media-object" src={user.image}/>
+             <img alt={user.displayname} className="media-object" src={user.image}/>
           </div>
           <div className="media-body">
           <h4 className="list-group-item-heading">{user.displayname}</h4>

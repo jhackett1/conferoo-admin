@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import UserService from '../UserService';
 import StatusApi from '../api/statusApi';
-import {Grid, Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox} from 'react-bootstrap';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import Humandate from 'human-date';
 
 class Dashboard extends Component {

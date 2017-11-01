@@ -11,6 +11,8 @@ class App extends Component {
         <p><strong>Conferoo is experimental software. Bugs are to be expected.</strong></p>
         <p>Conferoo is a digital platform for paperless conferences. It allows delegates to plan their agenda, consume curated content and interact with polls and feedback forms. Organisers use Conferoo Publisher to orchestrate the whole experience.</p>
         <p>You must have Conferoo Core running in order to use this Publisher app. You will also need at least one front-end app for delegates, which could be a web or native app.</p>
+        <p>Note that some tasks, like user management, currently cannot be controlled with this application and need direct edits to the database.</p>
+
         <h2>Features</h2>
         <p>Conferoo Publisher splits conference management up into strands:</p>
         <ul>

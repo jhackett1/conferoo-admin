@@ -26,7 +26,7 @@ class MediaUpload extends Component{
     this.setState({
       uploadProgress: currentProgress
     })
-    if(currentProgress == 100){
+    if(currentProgress === 100){
       this.props.hideUploader()
       this.props.getList()
     }
