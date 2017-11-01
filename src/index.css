@@ -7,6 +7,10 @@
   margin-bottom: 22px;
 }
 
+li p{
+  margin: 10px 0px;
+}
+
 footer{
   margin-top: 44px;
 }

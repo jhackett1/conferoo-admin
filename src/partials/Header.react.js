@@ -38,8 +38,9 @@ class Header extends Component {
         <Nav>
             <li><Link to="/events">Events</Link></li>
             <li><Link to="/speakers">Speakers</Link></li>
-            <li><Link to="/posts">Posts</Link></li>            
+            <li><Link to="/posts">Posts</Link></li>
             <li><Link to="/media">Media</Link></li>
+            <li><Link to="/users">Users</Link></li>            
             <li><Link to="/about">About</Link></li>
         </Nav>
         <Nav className='navbar-right'>

@@ -46,7 +46,7 @@ class LoginCallback extends Component {
         }
       }
     }.bind(this);
-    request.open('POST', config.api_host + '/authenticate');
+    request.open('POST', config.api_host + config.api_path + '/authenticate');
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send(JSON.stringify({
       code: postData,

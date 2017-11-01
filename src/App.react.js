@@ -27,6 +27,8 @@ import SpeakerEdit from './speakers/SpeakerEdit.react';
 
 import MediaList from './media/MediaList.react';
 
+import UserList from './users/UserList.react';
+
 class App extends Component {
   render() {
 
@@ -75,6 +77,10 @@ class App extends Component {
 
           <Switch>
             <PrivateRoute path="/media" component={MediaList}/>
+          </Switch>
+
+          <Switch>
+            <PrivateRoute path="/users" component={UserList}/>
           </Switch>
 
           <Route path="/about" component={About}/>

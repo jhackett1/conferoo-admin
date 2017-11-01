@@ -5,7 +5,15 @@ import theme from 'react-quill/dist/quill.snow.css';
 class Quill extends React.Component {
   constructor(props) {
     super(props)
+    this.imageHandler = this.imageHandler.bind(this)
   }
+
+  imageHandler = () => {
+    var range = this.quill.getSelection();
+    var value = prompt('What is the image URL');
+    this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+  }
+
 
   modules = {
     toolbar: [
@@ -13,7 +21,8 @@ class Quill extends React.Component {
       ['bold', 'italic', 'underline', 'blockquote'],
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['link'],
-      ['clean']
+      ['clean'],
+      ['hey']
     ]
   }
   formats = [
