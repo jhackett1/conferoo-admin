@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import UserApi from '../api/userApi';
 import { ListGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import UserItem from './UserItem.react';
+import Spinner from '../partials/Spinner.react';
 
 class UserList extends Component {
   // Initial state
   constructor(props){
     super(props);
     this.state = {
-      users: []
+      users: [],
+      isLoading: true
     }
   };
 
@@ -16,7 +18,10 @@ class UserList extends Component {
   componentDidMount(){
     UserApi.getUserList((err, list)=>{
       if(err) console.log(err);
-      this.setState({users: list})
+      this.setState({
+        users: list,
+        isLoading: false
+      })
     })
   }
 
@@ -33,6 +38,7 @@ class UserList extends Component {
         <div className="page-header">
           <h1>All users</h1>
         </div>
+        <Spinner isLoading={this.state.isLoading}/>
         <ListGroup>{List}</ListGroup>
       </div>
     );

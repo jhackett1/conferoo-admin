@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import PostApi from '../api/postApi';
+import PollApi from '../api/pollApi';
 import { ListGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import PostItem from './PostItem.react';
+import PollItem from './PollItem.react';
 import Spinner from '../partials/Spinner.react';
 
-class PostList extends Component {
+class PollList extends Component {
   // Initial state
   constructor(props){
     super(props);
     this.state = {
-      posts: [],
+      polls: [],
       isLoading: true
     }
   };
 
   // As component mounts to DOM, make the initial API call and set the state
   componentDidMount(){
-    PostApi.getPostsList((err, list)=>{
+    PollApi.getPollsList((err, list)=>{
       if(err) console.log(err);
+      console.log(list)
       this.setState({
-        posts: list,
+        polls: list,
         isLoading: false
       })
     })
@@ -29,10 +30,8 @@ class PostList extends Component {
 
   render() {
     // Create list elements
-    const List = this.state.posts.map((post) => {
-      return(
-        <PostItem key={post._id} post={post}/>
-      )
+    const List = this.state.polls.map((poll) => {
+      return (<PollItem key={poll._id} poll={poll}/>);
     })
     // And return the list
     return (
@@ -40,16 +39,16 @@ class PostList extends Component {
         <div className="page-header">
           <div className='btn-toolbar pull-right'>
             <div className='btn-group'>
-                <Link to="/posts/new" className="btn btn-primary">New post</Link>
+                <Link to="/events/new" className="btn btn-primary">New open poll</Link>
             </div>
           </div>
-          <h1>All posts</h1>
+          <h1>All polls</h1>
         </div>
+        {List}
         <Spinner isLoading={this.state.isLoading}/>
-        <ListGroup>{List}</ListGroup>
       </div>
     );
   }
 }
 
-export default PostList;
+export default PollList;

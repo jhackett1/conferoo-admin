@@ -4,6 +4,7 @@ import MediaApi from '../api/mediaApi';
 import MediaUpload from './MediaUpload.react';
 import Humandate from 'human-date';
 import Toastr from 'toastr';
+import Spinner from '../partials/Spinner.react';
 
 class MediaList extends Component {
   constructor(props){
@@ -11,7 +12,8 @@ class MediaList extends Component {
     this.state = {
       media: [],
       uploaderVisible: false,
-      sort: 'name'
+      sort: 'name',
+      isLoading: true
     }
     this.showUploader = this.showUploader.bind(this);
     this.hideUploader = this.hideUploader.bind(this);
@@ -26,7 +28,10 @@ class MediaList extends Component {
   getList(){
     MediaApi.getMediaList((err, list)=>{
         if(err) console.log(err);
-        this.setState({media: list})
+        this.setState({
+          media: list,
+          isLoading: false
+        })
     })
   }
 
@@ -98,6 +103,7 @@ class MediaList extends Component {
             </div>
             <h1>All media</h1>
           </div>
+          <Spinner isLoading={this.state.isLoading}/>
           <ListGroup>{List}</ListGroup>
         </div>
       </div>

@@ -3,13 +3,15 @@ import SpeakerApi from '../api/speakerApi';
 import { ListGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import SpeakerItem from './SpeakerItem.react';
+import Spinner from '../partials/Spinner.react';
 
 class SpeakerList extends Component {
   // Initial state
   constructor(props){
     super(props);
     this.state = {
-      speakers: []
+      speakers: [],
+      isLoading: true
     }
   };
 
@@ -17,7 +19,10 @@ class SpeakerList extends Component {
   componentDidMount(){
     SpeakerApi.getSpeakersList((err, list)=>{
       if(err) console.log(err);
-      this.setState({speakers: list})
+      this.setState({
+        speakers: list,
+        isLoading: false
+      })
     })
   }
 
@@ -40,6 +45,7 @@ class SpeakerList extends Component {
           </div>
           <h1>All speakers</h1>
         </div>
+        <Spinner isLoading={this.state.isLoading}/>
         <ListGroup>{List}</ListGroup>
       </div>
     );

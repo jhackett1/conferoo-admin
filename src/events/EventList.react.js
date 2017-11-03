@@ -3,13 +3,15 @@ import EventApi from '../api/eventApi';
 import { ListGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import EventItem from './EventItem.react';
+import Spinner from '../partials/Spinner.react';
 
 class EventList extends Component {
   // Initial state
   constructor(props){
     super(props);
     this.state = {
-      events: []
+      events: [],
+      isLoading: true
     }
   };
 
@@ -17,7 +19,10 @@ class EventList extends Component {
   componentDidMount(){
     EventApi.getEventsList((err, list)=>{
       if(err) console.log(err);
-      this.setState({events: list})
+      this.setState({
+        events: list,
+        isLoading: false
+      })
     })
   }
 
@@ -40,6 +45,7 @@ class EventList extends Component {
           </div>
           <h1>All events</h1>
         </div>
+        <Spinner isLoading={this.state.isLoading}/>
         <ListGroup>{List}</ListGroup>
       </div>
     );

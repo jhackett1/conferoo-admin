@@ -1,44 +1,55 @@
+/*Nav header styling*/
 .navbar {
   border-radius: 0;
 }
-
 .navbar .navbar-brand img{
   max-height: 100%
 }
 
+/*Animation!!!!!!!!!!!*/
+.list-group-item{
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in;
+}
 
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+/*Editor screen styling*/
 .input-lg, .mce-tinymce.mce-container.mce-panel, .rt-editor{
   margin-bottom: 22px;
 }
 
+/*List item styling*/
+div.media-left img {
+  width: 80px;
+}
 li p{
   margin: 10px 0px;
 }
-
 footer{
   margin-top: 44px;
 }
 
-div.media-left img {
-  width: 80px;
-}
-
-
+/*Logout button*/
 img.profile-thumbnail{
   width: 25px;
   height: 25px;
   margin-left: 10px;
   background-color: #efefef
 }
-
 .logout-items a{
   display: inline;
 }
-
 .logout-items .btn{
   display: none;
 }
-
 .logout-items .btn.show{
   display: inline !important;
 }

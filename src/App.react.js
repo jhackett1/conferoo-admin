@@ -11,8 +11,6 @@ import Login from './login/Login.react';
 import LoginCallback from './login/LoginCallback.react';
 import Dashboard from './dashboard/Dashboard.react';
 import About from './about/About.react';
-import NotFound from './notfound/NotFound.react';
-
 import PostList from './posts/PostList.react';
 import PostNew from './posts/PostNew.react';
 import PostEdit from './posts/PostEdit.react';
@@ -20,6 +18,8 @@ import PostEdit from './posts/PostEdit.react';
 import EventList from './events/EventList.react';
 import EventNew from './events/EventNew.react';
 import EventEdit from './events/EventEdit.react';
+
+import PollList from './polls/PollList.react';
 
 import SpeakerList from './speakers/SpeakerList.react';
 import SpeakerNew from './speakers/SpeakerNew.react';
@@ -58,9 +58,7 @@ class App extends Component {
           </Switch>
 
           <Switch>
-            <PrivateRoute path="/posts/edit/:id" component={PostEdit}/>
-            <PrivateRoute path="/posts/new" component={PostNew}/>
-            <PrivateRoute path="/posts" component={PostList}/>
+            <PrivateRoute path="/polls" component={PollList}/>
           </Switch>
 
           <Switch>
@@ -73,6 +71,12 @@ class App extends Component {
             <PrivateRoute path="/speakers/edit/:id" component={SpeakerEdit}/>
             <PrivateRoute path="/speakers/new" component={SpeakerNew}/>
             <PrivateRoute path="/speakers" component={SpeakerList}/>
+          </Switch>
+
+          <Switch>
+            <PrivateRoute path="/posts/edit/:id" component={PostEdit}/>
+            <PrivateRoute path="/posts/new" component={PostNew}/>
+            <PrivateRoute path="/posts" component={PostList}/>
           </Switch>
 
           <Switch>

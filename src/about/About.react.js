@@ -13,7 +13,7 @@ class App extends Component {
         <p>You must have Conferoo Core running in order to use this Publisher app. You will also need at least one front-end app for delegates, which could be a web or native app.</p>
         <p>Note that some tasks, like user management, currently cannot be controlled with this application and need direct edits to the database.</p>
 
-        <h2>Features</h2>
+        <h3>What can I do?</h3>
         <p>Conferoo Publisher splits conference management up into strands:</p>
         <ul>
           <li><strong>Events</strong>, which delegates can browse and save to a personalised agenda</li>
@@ -22,7 +22,17 @@ class App extends Component {
           <li><strong>Media</strong>, images and documents you wish to make available to delegates, either via other content or as standalone downloads.</li>
         </ul>
         <p>In addition to these key strands of content, Conferoo also allows pages of general conference info to be published.</p>
-        <h2>Help</h2>
+
+        <h3>Credits</h3>
+        Conferoo was created by the 2017 Fast Stream conference digital team, which consisted of:
+        <ul>
+          <li>Adam Robertson</li>
+          <li>Joshua Hackett</li>
+          <li>Alejandro Timon-Terren</li>
+          <li>Cameron Thompson</li>
+        </ul>
+
+        <h3>Help</h3>
         <p>You can contact Joshua Hackett for technical support at <a href="mailto:hello@joshuahackett.com">hello@joshuahackett.com</a></p>
       </div>
     );

@@ -27,25 +27,26 @@ class Header extends Component {
       )
     ))
 
-
     return (
       <Navbar>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/" className="navbar-brand"><img alt="Conferoo Publisher" src="/logo.png"/></Link>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <Nav>
-            <li><Link to="/events">Events</Link></li>
-            <li><Link to="/speakers">Speakers</Link></li>
-            <li><Link to="/posts">Posts</Link></li>
-            <li><Link to="/media">Media</Link></li>
-            <li><Link to="/users">Users</Link></li>
-            <li><Link to="/about">About</Link></li>
-        </Nav>
-        <Nav className='navbar-right'>
-            <Button/>
-        </Nav>
+        <Navbar.Brand>
+          <Link to="/" className="navbar-brand"><img alt="Conferoo Publisher" src="/logo.png"/></Link>
+        </Navbar.Brand>
+        <Navbar.Collapse>
+          <Nav>
+              <li><Link to="/events">Events</Link></li>
+              <li><Link to="/polls">Polls</Link></li>              
+              <li><Link to="/speakers">Speakers</Link></li>
+              <li><Link to="/posts">Posts</Link></li>
+              <li><Link to="/media">Media</Link></li>
+              <li><Link to="/users">Users</Link></li>
+              <li><Link to="/about">About</Link></li>
+          </Nav>
+          <Nav className='navbar-right'>
+              <Button/>
+          </Nav>
+        </Navbar.Collapse>
+        <Navbar.Toggle/>
       </Navbar>
     );
   }

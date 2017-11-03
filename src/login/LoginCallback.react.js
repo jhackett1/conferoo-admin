@@ -48,9 +48,17 @@ class LoginCallback extends Component {
     }.bind(this);
     request.open('POST', config.api_host + config.api_path + '/authenticate');
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+
+    console.log({
+      code: postData,
+      redirectUri: 'http://localhost:3000/login/callback',
+      clientId: config.google_client_id
+    });
+
     request.send(JSON.stringify({
       code: postData,
-      redirectUri: 'http://localhost:3001/login/callback',
+      redirectUri: 'http://localhost:3000/login/callback',
       clientId: config.google_client_id
     }));
   }
