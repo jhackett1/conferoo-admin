@@ -39,7 +39,7 @@ class PollList extends Component {
         <div className="page-header">
           <div className='btn-toolbar pull-right'>
             <div className='btn-group'>
-                <Link to="/events/new" className="btn btn-primary">New open poll</Link>
+                <Link to="/polls/new" className="btn btn-primary">New poll</Link>
             </div>
           </div>
           <h1>All polls</h1>

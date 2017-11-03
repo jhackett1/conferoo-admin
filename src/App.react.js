@@ -20,6 +20,8 @@ import EventNew from './events/EventNew.react';
 import EventEdit from './events/EventEdit.react';
 
 import PollList from './polls/PollList.react';
+import PollNew from './polls/PollNew.react';
+import PollEdit from './polls/PollEdit.react';
 
 import SpeakerList from './speakers/SpeakerList.react';
 import SpeakerNew from './speakers/SpeakerNew.react';
@@ -58,6 +60,8 @@ class App extends Component {
           </Switch>
 
           <Switch>
+            <PrivateRoute path="/polls/new" component={PollNew}/>
+            <PrivateRoute path="/polls/edit/:id" component={PollEdit}/>
             <PrivateRoute path="/polls" component={PollList}/>
           </Switch>
 
