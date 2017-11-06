@@ -21,6 +21,7 @@ class EventEdit extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -41,6 +42,17 @@ class EventEdit extends Component {
     })
   }
 
+
+  handleMediaChange(e) {
+    var temp = this.state.updatedEvent;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      updatedEvent: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedEvent;
@@ -144,6 +156,7 @@ class EventEdit extends Component {
             newEvent={this.state.updatedEvent}
             handleChange={this.handleChange}
             quillValue={this.state.content}
+            handleMediaChange={this.handleMediaChange}
             handleQuillChange={this.handleQuillChange}
             handleCheckboxChange={this.handleCheckboxChange}
             handleSubmit={this.handleSubmit}

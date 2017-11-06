@@ -28,7 +28,7 @@ class PostItem extends Component {
         )
       } else {
         return(
-          <img className="media-object" src={post.image}/>
+          <img className="media-object" src={post.preview ? post.preview : post.image}/>
         )
       }
     }

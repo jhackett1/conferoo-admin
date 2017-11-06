@@ -48,11 +48,10 @@ class LoginCallback extends Component {
     }.bind(this);
     request.open('POST', config.api_host + config.api_path + '/authenticate');
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-
     request.send(JSON.stringify({
       code: postData,
-      redirectUri: 'http://admin.fsconference.co.uk/login/callback',
+      redirectUri: 'http://localhost:3000/login/callback',
+      // redirectUri: 'http://admin.fsconference.co.uk/login/callback',
       clientId: config.google_client_id
     }));
   }
@@ -78,7 +77,7 @@ class LoginCallback extends Component {
     } else {
         return(
           <div className="container text-center">
-            Logging you in...
+            <p>Logging you in...</p>
           </div>
         );
     }

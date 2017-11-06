@@ -21,6 +21,7 @@ class PostEdit extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);    
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,6 +42,16 @@ class PostEdit extends Component {
     })
   }
 
+  handleMediaChange(e) {
+    var temp = this.state.updatedPost;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      updatedPost: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedPost;
@@ -141,6 +152,7 @@ class PostEdit extends Component {
             handleChange={this.handleChange}
             quillValue={this.state.content}
             handleQuillChange={this.handleQuillChange}
+            handleMediaChange={this.handleMediaChange}
             handleCheckboxChange={this.handleCheckboxChange}
             handleSubmit={this.handleSubmit}
             isBlocking={this.state.isBlocking}

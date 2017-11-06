@@ -63,7 +63,7 @@ class SpeakerForm extends Component {
                     />
                   </FormGroup>
                   <MediaPicker
-                    onChange={this.props.handleChange}
+                    onChange={this.props.handleMediaChange}
                   />
                 </Panel>
               </Col>

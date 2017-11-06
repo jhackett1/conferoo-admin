@@ -22,11 +22,23 @@ class PostNew extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+
+  handleMediaChange(e) {
+    var temp = this.state.newPost;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      newPost: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.newPost;
@@ -118,6 +130,7 @@ class PostNew extends Component {
               newPost={this.state.newPost}
               handleChange={this.handleChange}
               quillValue={this.state.content}
+              handleMediaChange={this.handleMediaChange}
               handleQuillChange={this.handleQuillChange}
               handleCheckboxChange={this.handleCheckboxChange}
               handleSubmit={this.handleSubmit}

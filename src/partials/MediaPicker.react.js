@@ -10,6 +10,7 @@ class MediaPicker extends Component {
     this.state = {
       modalVisible: false,
       chosenMedia: '',
+      preview: '',
       mediaList: []
     }
   }
@@ -34,18 +35,20 @@ class MediaPicker extends Component {
     e.preventDefault();
     this.hideModal();
     var chosenMedia = e.target.chosenMedia.value;
-
+    var preview = this.state.preview;
     this.props.onChange({
         mediaPicker: true,
-        chosenMedia: chosenMedia
+        chosenMedia: chosenMedia,
+        preview: preview
     });
   }
 
   render(){
 
-    const selectMedia = (chosenMedia) => {
+    const selectMedia = (chosenMedia, preview) => {
       this.setState({
-        chosenMedia: chosenMedia
+        chosenMedia: chosenMedia,
+        preview, preview
       })
     }
 
@@ -57,7 +60,7 @@ class MediaPicker extends Component {
             items[i].classList.remove('selected');
           }
           e.target.classList.add('selected')
-          selectMedia(medium.sources.full)
+          selectMedia(medium.sources.full, medium.sources.preview)
         }}>
           <img alt={medium.name} src={medium.sources.preview}/>
         </li>

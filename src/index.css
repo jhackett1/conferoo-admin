@@ -9,16 +9,12 @@
 /*Animation!!!!!!!!!!!*/
 .list-group-item{
   opacity: 1;
-  animation: fadeIn 0.3s ease-in;
+  animation: fadeIn 0.15s ease-in;
 }
 
 @keyframes fadeIn{
-  0%{
-    opacity: 0;
-  }
-  100%{
-    opacity: 1;
-  }
+  0%{opacity: 0;}
+  100%{opacity: 1;}
 }
 
 /*Editor screen styling*/

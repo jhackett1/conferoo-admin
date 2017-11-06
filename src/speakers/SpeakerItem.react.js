@@ -19,7 +19,7 @@ class SpeakerItem extends Component {
         )
       } else {
         return(
-          <img className="media-object" src={speaker.image}/>
+          <img className="media-object" src={speaker.preview ? speaker.preview : speaker.image}/>
         )
       }
     }

@@ -28,7 +28,7 @@ class EventItem extends Component {
         )
       } else {
         return(
-          <img className="media-object" src={event.image}/>
+          <img className="media-object" src={event.preview ? event.preview : event.image}/>
         )
       }
     }

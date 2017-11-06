@@ -21,9 +21,21 @@ class SpeakerNew extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+
+  handleMediaChange(e) {
+    var temp = this.state.newSpeaker;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      newSpeaker: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.newSpeaker;
@@ -80,6 +92,7 @@ class SpeakerNew extends Component {
             <SpeakerForm
               newSpeaker={this.state.newSpeaker}
               handleChange={this.handleChange}
+              handleMediaChange={this.handleMediaChange}
               handleSubmit={this.handleSubmit}
               isBlocking={this.state.isBlocking}
               mode="new"

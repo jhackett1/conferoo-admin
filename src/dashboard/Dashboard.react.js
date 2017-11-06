@@ -18,7 +18,7 @@ class Dashboard extends Component {
 
   }
 
-  componentWillMount(){
+  componentDidMount(){
 
     PollApi.getPollsList((err, polls)=>{
       console.log(err)

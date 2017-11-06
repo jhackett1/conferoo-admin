@@ -22,11 +22,23 @@ class EventNew extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+
+  handleMediaChange(e) {
+    var temp = this.state.newEvent;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      newEvent: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.newEvent;
@@ -118,6 +130,7 @@ class EventNew extends Component {
             <EventForm
               newEvent={this.state.newEvent}
               handleChange={this.handleChange}
+              handleMediaChange={this.handleMediaChange}
               quillValue={this.state.content}
               handleQuillChange={this.handleQuillChange}
               handleCheckboxChange={this.handleCheckboxChange}

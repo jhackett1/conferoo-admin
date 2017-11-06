@@ -16,6 +16,7 @@ class SpeakerEdit extends Component {
     this.state.isBlocking = false;
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   };
@@ -33,6 +34,17 @@ class SpeakerEdit extends Component {
     })
   }
 
+
+  handleMediaChange(e) {
+    var temp = this.state.updatedSpeaker;
+    // Support image and speaker pickers
+    temp.image = e.chosenMedia;
+    temp.preview = e.preview;
+    this.setState({
+      updatedSpeaker: temp,
+      isBlocking: true
+     });
+  };
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedSpeaker;
@@ -98,6 +110,7 @@ class SpeakerEdit extends Component {
         <Grid>
           <SpeakerForm
             newSpeaker={this.state.updatedSpeaker}
+            handleMediaChange={this.handleMediaChange}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             isBlocking={this.state.isBlocking}
