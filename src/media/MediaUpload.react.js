@@ -8,7 +8,7 @@ class MediaUpload extends Component{
     super(props);
     this.state = {
       file: false,
-      uploadProgress: 0
+      uploadProgress: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,11 +24,13 @@ class MediaUpload extends Component{
   uploadProgress(bytes){
     var currentProgress = Math.max(parseInt(( bytes / this.state.file.size ) * 100), 100);
     this.setState({
-      uploadProgress: currentProgress
+      uploadProgress: currentProgress + "% uploaded"
     })
-    if(currentProgress === 100){
-      this.props.hideUploader()
-      this.props.getList()
+    if(currentProgress > 100){
+      this.setState({
+        uploadProgress: 'Processing upload...'
+      })
+
     }
   }
 
@@ -36,10 +38,12 @@ class MediaUpload extends Component{
     // Stop page refresh
     e.preventDefault();
     // Make API call
-    MediaApi.createMedia(this.state.file, function(err, media){
+    MediaApi.createMedia(this.state.file, (err, media)=>{
       // Let the user know if the 422 error comes back from the server
       if(err) return;
+      this.props.hideUploader()
       Toastr.success('Media uploaded successfully.');
+      this.props.getList()
     }, this.uploadProgress)
   }
 
@@ -58,7 +62,7 @@ class MediaUpload extends Component{
               />
             </Modal.Body>
             <Modal.Footer>
-              <span className="pull-left small">{this.state.uploadProgress}% uploaded</span>
+              <span className="pull-left small">{this.state.uploadProgress}</span>
               <Button type="submit" onClick={this.handleSubmit}>Upload</Button>
             </Modal.Footer>
           </Form>

@@ -52,15 +52,15 @@ class MediaList extends Component {
     var id =this.state.media[i]._id;
     // Pull deleted item off state
     var newList = this.state.media;
-    newList.splice(i, 1);
-    this.setState({
-      media: newList
-    })
     // Make API call to finalise delete
-    MediaApi.deleteMedia(id, function(err, response){
+    MediaApi.deleteMedia(id, (err, response)=>{
       if(err){
         Toastr.error(err);
       } else {
+        newList.splice(i, 1);
+        this.setState({
+          media: newList
+        })
         Toastr.success(response.message);
       }
     })
