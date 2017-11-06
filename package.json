@@ -2,6 +2,7 @@
   "name": "conferoo-publisher",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://admin.fsconference.co.uk/",
   "dependencies": {
     "axios": "^0.17.0",
     "bootstrap": "^3.3.7",
