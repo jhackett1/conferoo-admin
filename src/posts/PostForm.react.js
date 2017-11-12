@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox} from 'react-bootstrap';
-import Quill from '../partials/Quill.react';
+import Editor from '../partials/TinyMCE.react';
 import config from '../config';
-
 import MediaPicker from '../partials/MediaPicker.react';
 import SpeakerPicker from '../partials/SpeakerPicker.react';
 
 class PostForm extends Component {
   render() {
     const isBlocking = this.props.isBlocking;
-
     // Get a list of themes to populate a checkbox control
     const Themes = config.themes.map((theme) => {
       return(
@@ -51,9 +49,8 @@ class PostForm extends Component {
               bsSize="large"
               placeholder="Title"
             />
-            <Quill
-              onChange={this.props.handleQuillChange}
-              value={this.props.quillValue}
+            <Editor
+              onChange={this.props.handleTinyMCEChange}
             />
             <Panel header="Teaser">
               <FormControl

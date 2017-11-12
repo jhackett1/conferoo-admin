@@ -18,8 +18,8 @@
 }
 
 /*Editor screen styling*/
-.input-lg, .mce-tinymce.mce-container.mce-panel, .rt-editor{
-  margin-bottom: 22px;
+.input-lg, .mce-tinymce.mce-container.mce-panel, .rt-editor, .field-with-spacing{
+  margin-bottom: 20px;
 }
 
 /*List item styling*/

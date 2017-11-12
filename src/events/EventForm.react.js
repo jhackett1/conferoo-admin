@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox} from 'react-bootstrap';
-import Quill from '../partials/Quill.react';
 import config from '../config';
-
 import MediaPicker from '../partials/MediaPicker.react';
 import SpeakerPicker from '../partials/SpeakerPicker.react';
 
 class EventForm extends Component {
   render() {
     const isBlocking = this.props.isBlocking;
+
+    console.log('RE-RENDERING - programme prop is: ', this.props.newEvent.programme);
 
     // Get a list of themes to populate a checkbox control
     const Themes = config.themes.map((theme) => {
@@ -61,10 +61,25 @@ class EventForm extends Component {
               bsSize="large"
               placeholder="Title"
             />
-            <Quill
-              onChange={this.props.handleQuillChange}
-              value={this.props.quillValue}
-            />
+            <Panel header="Content">
+              <FormControl
+                type="textarea"
+                name="content"
+                rows="8"
+                componentClass="textarea"
+                className="field-with-spacing"
+                placeholder="A longer description of the event"
+                onChange={this.props.handleChange}
+                value={this.props.newEvent.content}
+              />
+              <FormControl
+                type="text"
+                placeholder="Enter URL of speakers' slides, if available"
+                name="slides"
+                onChange={this.props.handleChange}
+                value={this.props.newEvent.slides}
+              />
+            </Panel>
             <Panel header="Teaser">
               <FormControl
                 type="textarea"
@@ -122,6 +137,7 @@ class EventForm extends Component {
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.programme}
               >
+                <option value={undefined}></option>
                 {Programmes}
               </FormControl>
 
@@ -136,6 +152,7 @@ class EventForm extends Component {
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.venue}
                 >
+                  <option value={undefined}></option>
                   {Venues}
                 </FormControl>
             </FormGroup>

@@ -3,9 +3,6 @@ import StatusApi from '../api/statusApi';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import Humandate from 'human-date';
 
-
-import PollApi from '../api/pollApi';
-
 class Dashboard extends Component {
   constructor(){
     super();
@@ -13,18 +10,9 @@ class Dashboard extends Component {
       uptime: '',
       counts: {}
     }
-
-  window.state = this.state;
-
   }
 
   componentDidMount(){
-
-    PollApi.getPollsList((err, polls)=>{
-      console.log(err)
-      console.log(polls)
-    })
-
     StatusApi.getStatus((err, status)=>{
       this.setState({
         uptime: status.uptime,
@@ -34,7 +22,6 @@ class Dashboard extends Component {
   }
 
   render() {
-
     return (
       <div className="container">
         <div className="page-header">

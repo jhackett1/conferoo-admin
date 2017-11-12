@@ -16,13 +16,11 @@ class EventEdit extends Component {
         published: true,
         themes: []
       },
-      content: '',
       isBlocking: false
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
     this.handleMediaChange = this.handleMediaChange.bind(this);
-    this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -35,13 +33,11 @@ class EventEdit extends Component {
       } else {
         this.setState({
           updatedEvent: event,
-          content: event.content,
           isBlocking: false
          });
       }
     })
   }
-
 
   handleMediaChange(e) {
     var temp = this.state.updatedEvent;
@@ -69,14 +65,6 @@ class EventEdit extends Component {
       isBlocking: true
      });
   };
-  // Save Quill changes to a higher order key of state, to prevent converting the value from a Delta to a string, which breaks Quill
-  handleQuillChange(value){
-    this.setState({
-      content: value,
-      isBlocking: true
-    });
-  }
-
 
   handleCheckboxChange(e) {
     const temp = this.state.updatedEvent;
@@ -100,14 +88,10 @@ class EventEdit extends Component {
      });
   }
 
-
-
   handleSubmit(e){
     e.preventDefault();
     // Prepare the updated event payload, inserting the new content from Quill
     var payload = this.state.updatedEvent;
-    payload.content = this.state.content;
-
     // Make API call
     EventApi.updateEvent(this.props.match.params.id, payload, (err, updatedEvent)=>{
       if(err){
@@ -155,9 +139,7 @@ class EventEdit extends Component {
           <EventForm
             newEvent={this.state.updatedEvent}
             handleChange={this.handleChange}
-            quillValue={this.state.content}
             handleMediaChange={this.handleMediaChange}
-            handleQuillChange={this.handleQuillChange}
             handleCheckboxChange={this.handleCheckboxChange}
             handleSubmit={this.handleSubmit}
             isBlocking={this.state.isBlocking}

@@ -4,6 +4,7 @@ import PostForm from './PostForm.react';
 import {Grid} from 'react-bootstrap';
 import {Prompt} from 'react-router-dom';
 import Toastr from 'toastr';
+import tinymce from 'tinymce';
 
 class PostEdit extends Component {
   // Initial state
@@ -21,9 +22,9 @@ class PostEdit extends Component {
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
-    this.handleMediaChange = this.handleMediaChange.bind(this);    
+    this.handleMediaChange = this.handleMediaChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handleQuillChange = this.handleQuillChange.bind(this);
+    this.handleTinyMCEChange = this.handleTinyMCEChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   };
@@ -38,6 +39,7 @@ class PostEdit extends Component {
           content: post.content,
           isBlocking: false
          });
+         tinymce.activeEditor.setContent(this.state.content);
       }
     })
   }
@@ -68,10 +70,9 @@ class PostEdit extends Component {
       isBlocking: true
      });
   };
-  // Save Quill changes to a higher order key of state, to prevent converting the value from a Delta to a string, which breaks Quill
-  handleQuillChange(value){
+  // Handle TinyMCE prompt
+  handleTinyMCEChange(){
     this.setState({
-      content: value,
       isBlocking: true
     });
   }
@@ -99,10 +100,9 @@ class PostEdit extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // Prepare the updated post payload, inserting the new content from Quill
+    // Prepare the updated post payload
     var payload = this.state.updatedPost;
-    payload.content = this.state.content;
-
+    payload.content = tinymce.activeEditor.getContent();
     // Make API call
     PostApi.updatePost(this.props.match.params.id, payload, (err, updatedPost)=>{
       if(err){
@@ -140,7 +140,7 @@ class PostEdit extends Component {
 
     return (
       <div>
-        <Prompt when={isBlocking} message="You may have unsaved changes. Are you sure you want to leave?" />
+        <Prompt when={isBlocking} message="You have unsaved changes. Are you sure you want to leave?" />
         <div className="container">
           <div className="page-header">
             <h1>Edit post</h1>
@@ -150,8 +150,7 @@ class PostEdit extends Component {
           <PostForm
             newPost={this.state.updatedPost}
             handleChange={this.handleChange}
-            quillValue={this.state.content}
-            handleQuillChange={this.handleQuillChange}
+            handleTinyMCEChange={this.handleTinyMCEChange}
             handleMediaChange={this.handleMediaChange}
             handleCheckboxChange={this.handleCheckboxChange}
             handleSubmit={this.handleSubmit}

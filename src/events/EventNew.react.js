@@ -17,17 +17,14 @@ class EventNew extends Component {
         published: 'public',
         themes: []
       },
-      content: '',
       isBlocking: false
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
     this.handleMediaChange = this.handleMediaChange.bind(this);
-    this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
-
 
   handleMediaChange(e) {
     var temp = this.state.newEvent;
@@ -55,13 +52,6 @@ class EventNew extends Component {
       isBlocking: true
      });
   };
-  // Save Quill changes to a higher order key of state, to prevent converting the value from a Delta to a string, which breaks Quill
-  handleQuillChange(value){
-    this.setState({
-      content: value,
-      isBlocking: true
-    });
-  }
 
   handleCheckboxChange(e) {
     const temp = this.state.newEvent;
@@ -90,7 +80,6 @@ class EventNew extends Component {
     e.preventDefault();
     //Add content from Quill into the content to event, along with the date of creation
     var newEvent = this.state.newEvent;
-    newEvent.content = this.state.content;
     newEvent.createdAt = new Date();
     // Make API call
     EventApi.createEvent(newEvent, (err, newEvent)=>{
@@ -131,8 +120,6 @@ class EventNew extends Component {
               newEvent={this.state.newEvent}
               handleChange={this.handleChange}
               handleMediaChange={this.handleMediaChange}
-              quillValue={this.state.content}
-              handleQuillChange={this.handleQuillChange}
               handleCheckboxChange={this.handleCheckboxChange}
               handleSubmit={this.handleSubmit}
               isBlocking={this.state.isBlocking}

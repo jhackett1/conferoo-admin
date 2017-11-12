@@ -19,14 +19,12 @@ class PollList extends Component {
   componentDidMount(){
     PollApi.getPollsList((err, list)=>{
       if(err) console.log(err);
-      console.log(list)
       this.setState({
         polls: list,
         isLoading: false
       })
     })
   }
-
 
   render() {
     // Create list elements

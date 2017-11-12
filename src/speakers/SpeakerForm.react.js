@@ -38,6 +38,14 @@ class SpeakerForm extends Component {
                 />
                 <Panel header="Biography">
                   <FormControl
+                    type="text"
+                    name="position"
+                    onChange={this.props.handleChange}
+                    value={this.props.newSpeaker.position}
+                    placeholder="Speaker's position"
+                    className="field-with-spacing"
+                  />
+                  <FormControl
                     type="textarea"
                     name="biography"
                     rows="5"
