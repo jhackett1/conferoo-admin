@@ -24,6 +24,13 @@ class LoginCallback extends Component {
         // If authentication was successful, save the token
         if(status===200){
           var data = JSON.parse(request.responseText);
+          // Guard against users signing in with the wrong account
+          if(!data.email.endsWith('@faststream.civilservice.gov.uk')){
+            Toastr.error('You must sign in with a @faststream.civilservice.gov.uk account');
+            return this.setState({
+              redirect: '/login'
+            })
+          }
           UserService.saveToken(data.token);
           UserService.saveProfile(data);
           Toastr.success(`You are logged in as ${data.displayname}`);

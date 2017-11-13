@@ -82,8 +82,7 @@ class MediaList extends Component {
                   <Button onClick={this.handleDelete.bind(this, i)}bsStyle="danger">Delete</Button>
                 </ButtonGroup>
               </ButtonToolbar>
-              <h4 className="list-group-item-heading"></h4>
-              <p className="list-group-item-text">{medium.sources.full}</p>
+              <h5 className="list-group-item-heading">{medium.title}</h5>
               <small>{Humandate.relativeTime(medium.uploadedAt)}</small>
               </div>
             </div>
