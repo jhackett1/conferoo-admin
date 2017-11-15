@@ -11,9 +11,14 @@ import Login from './login/Login.react';
 import LoginCallback from './login/LoginCallback.react';
 import Dashboard from './dashboard/Dashboard.react';
 import About from './about/About.react';
+
 import PostList from './posts/PostList.react';
 import PostNew from './posts/PostNew.react';
 import PostEdit from './posts/PostEdit.react';
+
+import PageList from './pages/PageList.react';
+import PageNew from './pages/PageNew.react';
+import PageEdit from './pages/PageEdit.react';
 
 import EventList from './events/EventList.react';
 import EventNew from './events/EventNew.react';
@@ -63,6 +68,12 @@ class App extends Component {
             <PrivateRoute path="/polls/new" component={PollNew}/>
             <PrivateRoute path="/polls/edit/:id" component={PollEdit}/>
             <PrivateRoute path="/polls" component={PollList}/>
+          </Switch>
+
+          <Switch>
+            <PrivateRoute path="/pages/new" component={PageNew}/>
+            <PrivateRoute path="/pages/edit/:id" component={PageEdit}/>
+            <PrivateRoute path="/pages" component={PageList}/>
           </Switch>
 
           <Switch>
