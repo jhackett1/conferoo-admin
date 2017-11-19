@@ -43,7 +43,7 @@ class MediaPicker extends Component {
 
     // Get a list of programmes to populate a dropdown select control
     const SpeakerList = this.state.speakerList.map((speaker) => {
-      return(<option key={speaker._id}>{speaker.name}</option>);
+      return(<option key={speaker._id} value={speaker._id}>{speaker.name}</option>);
     });
 
     return(

@@ -1,3 +1,7 @@
+// TODO: Refactor this to includ support for 'medium' images
+// And possibly refactor the database models too?
+
+
 import React, { Component } from 'react';
 import {Modal, Button, Form, FormControl} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
