@@ -90,7 +90,7 @@ class PostForm extends Component {
               <FormGroup>
                 <FormControl
                   type="text"
-                  placeholder="Name of the speaker who wrote this post"
+                  placeholder="ID of the speaker who wrote this post"
                   name="author"
                   onChange={this.props.handleChange}
                   value={this.props.newPost.author}

@@ -118,7 +118,7 @@ class EventForm extends Component {
               <FormGroup>
                 <FormControl
                   type="text"
-                  placeholder="Name of this event's speaker"
+                  placeholder="ID of this event's speaker"
                   name="speaker"
                   onChange={this.props.handleChange}
                   value={this.props.newEvent.speaker}
