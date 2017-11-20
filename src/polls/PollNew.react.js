@@ -15,12 +15,19 @@ class PollNew extends Component {
       redirect: false,
       newPoll: {
         published: 'active',
-        themes: []
+        themes: [],
+        options: {
+          a: null,
+          b: null,
+          c: null,
+          d: null,
+        }
       },
       isBlocking: false
     };
     // Bind functions to this
     this.handleChange = this.handleChange.bind(this);
+    this.handleOptionsChange = this.handleOptionsChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
@@ -33,8 +40,18 @@ class PollNew extends Component {
       newPoll: temp,
       isBlocking: true
      });
-     console.log(this.state.newPoll)
   };
+
+
+    handleOptionsChange(e) {
+      var temp = this.state.newPoll;
+      temp.options[e.target.name] = e.target.value;
+      this.setState({
+        newPoll: temp,
+        isBlocking: true
+       });
+    };
+
 
   handleCheckboxChange(e) {
     const temp = this.state.newPoll;
@@ -56,7 +73,6 @@ class PollNew extends Component {
       newPoll: temp,
       isBlocking: true
      });
-     console.log(this.state.newPoll)
   }
 
   handleSubmit(e){
@@ -66,13 +82,7 @@ class PollNew extends Component {
     var newPoll = this.state.newPoll;
     newPoll.createdAt = new Date();
     // Make API call
-
-    console.log("DATA SUBMITTTTTTTED:", newPoll)
-
     PollApi.createPoll(newPoll, (err, newPoll)=>{
-
-      console.log("SUBMITTED TO SERVER", newPoll)
-
       if(err){
         Toastr.error("Whoops, there was an error: " + err.status);
       } else {
@@ -111,6 +121,7 @@ class PollNew extends Component {
               handleChange={this.handleChange}
               quillValue={this.state.content}
               handleQuillChange={this.handleQuillChange}
+              handleOptionsChange={this.handleOptionsChange}
               handleCheckboxChange={this.handleCheckboxChange}
               handleSubmit={this.handleSubmit}
               isBlocking={this.state.isBlocking}

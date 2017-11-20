@@ -14,7 +14,13 @@ class PollEdit extends Component {
       redirect: false,
       updatedPoll: {
         published: true,
-        themes: []
+        themes: [],
+        options: {
+          a: null,
+          b: null,
+          c: null,
+          d: null,
+        }
       },
       isBlocking: false
     };
@@ -22,6 +28,7 @@ class PollEdit extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleOptionsChange = this.handleOptionsChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   };
 
@@ -47,6 +54,17 @@ class PollEdit extends Component {
       isBlocking: true
      });
   };
+
+
+  handleOptionsChange(e) {
+    var temp = this.state.updatedPoll;
+    temp.options[e.target.name] = e.target.value;
+    this.setState({
+      updatedPoll: temp,
+      isBlocking: true
+     });
+  };
+
 
   handleCheckboxChange(e) {
     const temp = this.state.updatedPoll;
@@ -125,6 +143,7 @@ class PollEdit extends Component {
             newEvent={this.state.updatedPoll}
             handleChange={this.handleChange}
             handleCheckboxChange={this.handleCheckboxChange}
+            handleOptionsChange={this.handleOptionsChange}
             handleSubmit={this.handleSubmit}
             isBlocking={this.state.isBlocking}
             handleDelete={this.handleDelete}

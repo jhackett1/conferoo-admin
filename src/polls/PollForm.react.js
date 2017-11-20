@@ -3,6 +3,7 @@ import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Ra
 import config from '../config';
 
 class EventForm extends Component {
+
   render() {
 
     const isBlocking = this.props.isBlocking;
@@ -17,17 +18,6 @@ class EventForm extends Component {
         >{theme}</Checkbox>
       );
     });
-
-    const Options = () => {
-      if(this.props.newEvent.type && this.props.newEvent.type === 'multiple'){
-        return(
-          <Panel header="Multiple choice options" className="panel">
-          </Panel>
-        );
-      } else {
-        return null;
-      }
-    };
 
     // Show the right buttons for 'new' or 'edit' mode.
     const Buttons = ()=>{
@@ -73,7 +63,44 @@ class EventForm extends Component {
               />
             </Panel>
 
-            <Options />
+            <Panel header="Multiple choice options" className={(this.props.newEvent.type === 'multiple') ? 'panel' : 'hidden panel'}>
+              <p>Enter at least two options for delegates to choose from</p>
+              <FormControl
+                type="text"
+                name="a"
+                key="a"
+                onChange={this.props.handleOptionsChange}
+                value={this.props.newEvent.options.a}
+                className="field-with-spacing"
+                placeholder="Option A"
+              />
+              <FormControl
+                type="text"
+                name="b"
+                key="b"
+                onChange={this.props.handleOptionsChange}
+                value={this.props.newEvent.options.b}
+                className="field-with-spacing"
+                placeholder="Option B"
+              />
+              <FormControl
+                type="text"
+                name="c"
+                key="c"
+                onChange={this.props.handleOptionsChange}
+                value={this.props.newEvent.options.c}
+                className="field-with-spacing"
+                placeholder="Option C"
+              />
+              <FormControl
+                type="text"
+                name="d"
+                key="d"
+                onChange={this.props.handleOptionsChange}
+                value={this.props.newEvent.options.d}
+                placeholder="Option D"
+              />
+            </Panel>
 
           </Col>
           <Col xs={12} md={4}>
