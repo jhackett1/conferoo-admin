@@ -48,6 +48,7 @@ class PageEdit extends Component {
     var temp = this.state.updatedPage;
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
+    temp.preview = e.preview;    
     temp.preview = e.preview;
     this.setState({
       updatedPage: temp,

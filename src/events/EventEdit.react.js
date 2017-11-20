@@ -44,6 +44,7 @@ class EventEdit extends Component {
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
     temp.preview = e.preview;
+    temp.medium = e.medium;
     this.setState({
       updatedEvent: temp,
       isBlocking: true
@@ -92,6 +93,8 @@ class EventEdit extends Component {
     e.preventDefault();
     // Prepare the updated event payload, inserting the new content from Quill
     var payload = this.state.updatedEvent;
+
+    console.log("PAYLOAD TO SEND", payload)
     // Make API call
     EventApi.updateEvent(this.props.match.params.id, payload, (err, updatedEvent)=>{
       if(err){

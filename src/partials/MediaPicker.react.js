@@ -15,6 +15,7 @@ class MediaPicker extends Component {
       modalVisible: false,
       chosenMedia: '',
       preview: '',
+      medium: '',
       mediaList: []
     }
   }
@@ -40,33 +41,36 @@ class MediaPicker extends Component {
     this.hideModal();
     var chosenMedia = e.target.chosenMedia.value;
     var preview = this.state.preview;
+    var medium = this.state.medium;
     this.props.onChange({
         mediaPicker: true,
         chosenMedia: chosenMedia,
-        preview: preview
+        preview: preview,
+        medium: medium
     });
   }
 
   render(){
 
-    const selectMedia = (chosenMedia, preview) => {
+    const selectMedia = (chosenMedia, preview, medium) => {
       this.setState({
         chosenMedia: chosenMedia,
-        preview, preview
+        preview: preview,
+        medium: medium
       })
     }
 
-    const MediaList = this.state.mediaList.map(function(medium){
+    const MediaList = this.state.mediaList.map(function(mediaItem){
       return (
-        <li key={medium._id} onClick={(e)=>{
+        <li key={mediaItem._id} onClick={(e)=>{
           var items = document.querySelectorAll('ul#media-picker-list li img');
           for (var i = 0; i < items.length; i++) {
             items[i].classList.remove('selected');
           }
           e.target.classList.add('selected')
-          selectMedia(medium.sources.full, medium.sources.preview)
+          selectMedia(mediaItem.sources.full, mediaItem.sources.preview, mediaItem.sources.medium)
         }}>
-          <img alt={medium.name} src={medium.sources.preview}/>
+          <img alt={mediaItem.name} src={mediaItem.sources.preview}/>
         </li>
       )
     })

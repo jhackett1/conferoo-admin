@@ -30,6 +30,7 @@ class SpeakerNew extends Component {
     var temp = this.state.newSpeaker;
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
+    temp.preview = e.preview;    
     temp.preview = e.preview;
     this.setState({
       newSpeaker: temp,

@@ -31,6 +31,7 @@ class EventNew extends Component {
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
     temp.preview = e.preview;
+    temp.medium = e.medium;
     this.setState({
       newEvent: temp,
       isBlocking: true
