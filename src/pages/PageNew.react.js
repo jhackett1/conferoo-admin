@@ -34,7 +34,7 @@ class PageNew extends Component {
     var temp = this.state.newPage;
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
-    temp.preview = e.preview;    
+    temp.medium = e.medium;     
     temp.preview = e.preview;
     this.setState({
       newPage: temp,
