@@ -22,10 +22,10 @@ class PollEdit extends Component {
           d: null,
         },
         responses: {
-          a: null,
-          b: null,
-          c: null,
-          d: null,
+          a: [],
+          b: [],
+          c: [],
+          d: [],
         }
       },
       isBlocking: false
@@ -54,7 +54,6 @@ class PollEdit extends Component {
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedPoll;
-    temp[e.target.name] = e.target.value;
     this.setState({
       updatedPoll: temp,
       isBlocking: true

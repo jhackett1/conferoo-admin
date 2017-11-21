@@ -23,10 +23,10 @@ class PollNew extends Component {
           d: null,
         },
         responses: {
-          a: null,
-          b: null,
-          c: null,
-          d: null,
+          a: [],
+          b: [],
+          c: [],
+          d: [],
         }
       },
       isBlocking: false
@@ -52,7 +52,6 @@ class PollNew extends Component {
     handleOptionsChange(e) {
       var temp = this.state.newPoll;
       temp.options[e.target.name] = e.target.value;
-      temp.responses[e.target.name] = e.target.value;
       this.setState({
         newPoll: temp,
         isBlocking: true
