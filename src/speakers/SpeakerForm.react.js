@@ -24,6 +24,24 @@ class SpeakerForm extends Component {
       }
     }
 
+    const CharCount = () => {
+      if (this.props.newSpeaker.biography) {
+        let remaining = 400 - this.props.newSpeaker.biography.length;
+
+          if (remaining > 0) {
+            return(
+              <p className="help-text spaced">{remaining} characters remaining.</p>
+            )
+          } else {
+            return(
+              <p className="warn-text spaced"><strong>{remaining} characters over. Biography will be trimmed in some places.</strong></p>
+            )
+          }
+      } else {
+        return null
+      }
+    }
+
     return (
           <Form>
             <Row className="show-grid">
@@ -54,6 +72,7 @@ class SpeakerForm extends Component {
                     onChange={this.props.handleChange}
                     value={this.props.newSpeaker.biography}
                   />
+                  <CharCount/>
                 </Panel>
               </Col>
               <Col xs={12} md={4}>

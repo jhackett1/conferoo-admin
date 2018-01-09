@@ -31,6 +31,25 @@ class EventForm extends Component {
       return(<option value={programme}>{programme}</option>);
     });
 
+
+    const CharCount = () => {
+      if (this.props.newEvent.content) {
+        let remaining = 1000 - this.props.newEvent.content.length;
+
+          if (remaining > 0) {
+            return(
+              <p className="help-text">{remaining} characters of recommendation remaining.</p>
+            )
+          } else {
+            return(
+              <p className="warn-text"><strong>{remaining} characters over recommended limit. Content may not look its best in all places.</strong></p>
+            )
+          }
+      } else {
+        return null
+      }
+    }
+
     // Show the right buttons for 'new' or 'edit' mode.
     const Buttons = ()=>{
       if(this.props.mode === "new"){
@@ -72,6 +91,7 @@ class EventForm extends Component {
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.content}
               />
+              <CharCount/>
               <FormControl
                 type="text"
                 placeholder="Enter URL of speakers' slides, if available"

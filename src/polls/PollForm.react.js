@@ -6,6 +6,8 @@ class EventForm extends Component {
 
   render() {
 
+    console.log(this.props.newEvent)
+
     const isBlocking = this.props.isBlocking;
 
     // Get a list of themes to populate a checkbox control
@@ -37,6 +39,24 @@ class EventForm extends Component {
       }
     }
 
+    const CharCount = () => {
+      if (this.props.newEvent.detail) {
+        let remaining = 300 - this.props.newEvent.detail;
+
+          if (remaining > 0) {
+            return(
+              <p className="help-text spaced">{remaining} characters of recommended count remaining.</p>
+            )
+          } else {
+            return(
+              <p className="warn-text spaced"><strong>{remaining} characters over recommended count. Poll may not look its best in all places.</strong></p>
+            )
+          }
+      } else {
+        return null
+      }
+    }
+
     return (
       <Form>
         <Row className="show-grid">
@@ -61,6 +81,7 @@ class EventForm extends Component {
                 onChange={this.props.handleChange}
                 value={this.props.newEvent.detail}
               />
+              <CharCount/>
             </Panel>
 
             <Panel header="Multiple choice options" className={(this.props.newEvent.type === 'multiple') ? 'panel' : 'hidden panel'}>

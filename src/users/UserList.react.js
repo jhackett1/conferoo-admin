@@ -18,6 +18,7 @@ class UserList extends Component {
   componentDidMount(){
     UserApi.getUserList((err, list)=>{
       if(err) console.log(err);
+      console.log(list)
       this.setState({
         users: list,
         isLoading: false

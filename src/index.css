@@ -49,3 +49,20 @@ img.profile-thumbnail{
 .logout-items .btn.show{
   display: inline !important;
 }
+
+.help-text{
+  font-size: 0.9em;
+  margin: -5px 0px 15px 0px;
+  color: grey;
+}
+
+.warn-text{
+  font-size: 0.9em;
+  margin: -5px 0px 15px 0px;
+  color: red;
+}
+
+.help-text.spaced, .warn-text.spaced{
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
