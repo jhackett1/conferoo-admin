@@ -27,7 +27,8 @@ class PollNew extends Component {
           b: [],
           c: [],
           d: [],
-        }
+        },
+        openResponses: []
       },
       isBlocking: false
     };

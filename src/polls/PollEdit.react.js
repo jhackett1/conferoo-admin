@@ -26,7 +26,8 @@ class PollEdit extends Component {
           b: [],
           c: [],
           d: [],
-        }
+        },
+        openResponses: []
       },
       isBlocking: false
     };

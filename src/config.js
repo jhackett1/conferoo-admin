@@ -5,7 +5,7 @@ var config = {
   api_path: 'api',
   // No trailing slash here
   // publisher_host: 'http://admin.fsconference.co.uk',
-  publisher_host: 'http://localhost:3001',
+  publisher_host: 'http://localhost:3000',
   // Populate theme controls for events and posts
   themes: [
     "Cybersecurity",

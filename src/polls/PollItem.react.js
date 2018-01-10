@@ -19,12 +19,18 @@ class EventItem extends Component {
       }
     }
 
+    let responsesNumber =
+      poll.responses.a.length +
+      poll.responses.b.length +
+      poll.responses.c.length +
+      poll.responses.d.length;
+
     return (
       <Link to={"/polls/edit/" + poll._id} key={poll._id} className='list-group-item'>
         <DraftBadge/>
           <h4 className="list-group-item-heading">{poll.question}</h4>
           <p className="list-group-item-text">{poll.detail}</p>
-          <small>{Humandate.relativeTime(poll.createdAt)} | {poll.responses.length} responses</small>
+          <small>{Humandate.relativeTime(poll.createdAt)} | {responsesNumber + poll.openResponses.length} responses</small>
       </Link>
     );
   }

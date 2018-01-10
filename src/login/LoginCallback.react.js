@@ -33,7 +33,7 @@ class LoginCallback extends Component {
           }
           UserService.saveToken(data.token);
           UserService.saveProfile(data);
-          Toastr.success(`You are logged in as ${data.displayname}`);
+          Toastr.success(`You are logged in as ${data.displayName}`);
           this.setState({
             redirect: '/'
           })

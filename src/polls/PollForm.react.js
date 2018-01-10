@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox} from 'react-bootstrap';
+import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox, ListGroup, ListGroupItem} from 'react-bootstrap';
 import config from '../config';
 
 class EventForm extends Component {
@@ -56,6 +56,10 @@ class EventForm extends Component {
         return null
       }
     }
+
+    const OpenResponses = this.props.newEvent.openResponses.map((response)=>
+      <ListGroupItem header={`"` + response.message + `"`}>From {response.email}</ListGroupItem>
+    )
 
     return (
       <Form>
@@ -121,6 +125,16 @@ class EventForm extends Component {
                 value={this.props.newEvent.options.d}
                 placeholder="Option D"
               />
+            </Panel>
+
+            <Panel header="Responses" className={(this.props.newEvent.type === 'multiple') ? 'panel-info' : 'hidden panel'}>
+              Multiple choice responses here
+            </Panel>
+
+            <Panel header="Responses" className={(this.props.newEvent.type === 'open') ? 'panel-info' : 'hidden panel'}>
+              <ListGroup>
+              {OpenResponses}
+              </ListGroup>
             </Panel>
 
           </Col>
