@@ -48,7 +48,7 @@ class PageEdit extends Component {
     var temp = this.state.updatedPage;
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
-    temp.medium = e.medium;    
+    temp.medium = e.medium;
     temp.preview = e.preview;
     this.setState({
       updatedPage: temp,
@@ -122,7 +122,7 @@ class PageEdit extends Component {
   // Delete the selected page
   handleDelete(){
     var response = window.confirm("Are you sure you want to permenantly delete this page?");
-    if (response == true) {
+    if (response === true) {
       PageApi.deletePage(this.props.match.params.id, (err, deletedPage)=>{
         if(err){
           Toastr.error("Whoops, there was an error: " + err.status);
