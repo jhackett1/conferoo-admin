@@ -19,6 +19,7 @@ class App extends Component {
           <li><strong>Events</strong>, which delegates can browse and save to a personalised agenda</li>
           <li><strong>Posts</strong>, or mainly written content in service of your publicity and marketing strategy.</li>
           <li><strong>Polls</strong>, the main way your delegates will interact with each other and you via Conferoo is via polls, which organisers create and set possible responses for.</li>
+          <li><strong>Pages</strong>, evergreen content intended to convey useful information to delegates, concerning, say WiFi or the venue.</li>
           <li><strong>Media</strong>, images and documents you wish to make available to delegates, either via other content or as standalone downloads.</li>
         </ul>
         <p>In addition to these key strands of content, Conferoo also allows pages of general conference info to be published.</p>

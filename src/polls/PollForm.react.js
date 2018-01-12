@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Row, Col, Panel, Form, FormGroup, FormControl, ButtonToolbar, Button, Radio, Checkbox, ListGroup, ListGroupItem} from 'react-bootstrap';
 import config from '../config';
+import MultipleChoiceResults from './MultipleChoiceResults.react';
 
 class EventForm extends Component {
 
@@ -124,7 +125,7 @@ class EventForm extends Component {
             </Panel>
 
             <Panel header="Responses" className={(this.props.newEvent.type === 'multiple') ? 'panel-info' : 'hidden panel'}>
-              Multiple choice responses here
+              <MultipleChoiceResults results={this.props.newEvent.responses} options={this.props.newEvent.options}/>
             </Panel>
 
             <Panel header="Responses" className={(this.props.newEvent.type === 'open') ? 'panel-info' : 'hidden panel'}>

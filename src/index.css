@@ -66,3 +66,26 @@ img.profile-thumbnail{
   margin-top: 10px;
   margin-bottom: 0px;
 }
+
+ul.results{
+  margin: 0;
+  padding: 0;
+  list-style-type: none
+}
+
+ul.results li{
+  margin-bottom: 20px;
+  width: 100%
+}
+
+ul.results li div{
+  background-color: #377BB5;
+  padding: 5px;
+  color: white;
+  border-radius: 4px;
+  min-width: 40px
+}
+
+ul.results li div.winner{
+  background-color: #C73232
+}
