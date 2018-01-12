@@ -5,9 +5,6 @@ import config from '../config';
 class EventForm extends Component {
 
   render() {
-
-    console.log(this.props.newEvent)
-
     const isBlocking = this.props.isBlocking;
 
     // Get a list of themes to populate a checkbox control
@@ -41,8 +38,7 @@ class EventForm extends Component {
 
     const CharCount = () => {
       if (this.props.newEvent.detail) {
-        let remaining = 300 - this.props.newEvent.detail;
-
+        let remaining = 300 - this.props.newEvent.detail.length;
           if (remaining > 0) {
             return(
               <p className="help-text spaced">{remaining} characters of recommended count remaining.</p>
@@ -143,7 +139,6 @@ class EventForm extends Component {
             <Panel header="Publish" className="panel-primary">
               <FormGroup onChange={this.props.handleChange.bind(this)}>
                 <Radio name="published" value='private' checked={this.props.newEvent.published === 'private' ? 'true' : ''} inline>Private</Radio>
-                <Radio name="published" value='inactive' checked={this.props.newEvent.published === 'inactive' ? 'true' : ''} inline>Inactive</Radio>
                 <Radio name="published" value='active' checked={this.props.newEvent.published === 'active' ? 'true' : ''} inline>Active</Radio>
               </FormGroup>
               <Buttons/>

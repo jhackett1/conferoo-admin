@@ -24,7 +24,7 @@ class UserItem extends Component {
           <div className="media-body">
           <h4 className="list-group-item-heading">{user.displayname}</h4>
           <p className="list-group-item-text">{user.email}</p>
-          <small>Attending {user.programme}</small>
+          <small>{(user.programme !== "0" ? "Attending " + user.programme : 'Not yet onboarded')}</small>
           </div>
         </div>
       </li>

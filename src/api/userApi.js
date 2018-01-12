@@ -31,6 +31,7 @@ const UserApi = {
       }
     })
       .then(function (response) {
+        console.log(response.data)
         return cb(null, response.data)
       })
       .catch(function (error) {

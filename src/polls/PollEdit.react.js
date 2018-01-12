@@ -13,7 +13,7 @@ class PollEdit extends Component {
     this.state = {
       redirect: false,
       updatedPoll: {
-        published: true,
+        published: 'active',
         themes: [],
         options: {
           a: null,
@@ -55,12 +55,12 @@ class PollEdit extends Component {
   // Helper functions to keep track of form changes in state
   handleChange(e) {
     var temp = this.state.updatedPoll;
+    temp[e.target.name] = e.target.value;
     this.setState({
       updatedPoll: temp,
       isBlocking: true
      });
   };
-
 
   handleOptionsChange(e) {
     var temp = this.state.updatedPoll;
@@ -71,7 +71,6 @@ class PollEdit extends Component {
       isBlocking: true
      });
   };
-
 
   handleCheckboxChange(e) {
     const temp = this.state.updatedPoll;
