@@ -8,11 +8,9 @@ var config = {
   // publisher_host: 'http://localhost:3000',
   // Populate theme controls for events and posts
   themes: [
-    "Cybersecurity",
-    "Diversity",
-    "Documentation",
-    "Materialism",
-    "Astral Projection"
+    "Understanding the UK",
+    "Policy and public engagement",
+    "Data and technology"
   ],
   programmes: [
     "Thursday",
