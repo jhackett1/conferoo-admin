@@ -35,6 +35,7 @@ const MediaApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
+        UserService.expiredToken(error);
         // Did a HTTP response come back? i.e. is the network/server up?
         if(error.response){
           errorBuilder(error)
@@ -63,6 +64,7 @@ const MediaApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
+        UserService.expiredToken(error);
         // Did a HTTP response come back? i.e. is the network/server up?
         if(error.response){
           errorBuilder(error)
@@ -86,6 +88,7 @@ const MediaApi = {
         return cb(null, response.data)
       })
       .catch(function (error) {
+        UserService.expiredToken(error);        
         // Did a HTTP response come back? i.e. is the network/server up?
         if(error.response){
           errorBuilder(error)

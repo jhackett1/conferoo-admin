@@ -1,4 +1,5 @@
 // Methods to store and access the logged in user's token and profile in localStorage
+import Toastr from 'toastr';
 
 // Access Window object;
 var localStorage = window.localStorage;
@@ -34,6 +35,14 @@ const UserService = {
   // Destroy a token (eg. when logging out)
   removeToken(){
     localStorage.removeItem('conferoo_user_token');
+  },
+  // Handle a potentially expired token
+  expiredToken(err){
+    if (err.response.status === 401) {
+      Toastr.error(`Your session has expired. Redirecting to login screen`)
+      // Handle expired tokens
+      document.location = '/login';
+    }
   }
 }
 

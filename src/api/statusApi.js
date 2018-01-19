@@ -37,7 +37,7 @@ const StatusApi = {
         // console.log('cb called')
       })
       .catch(function (error) {
-        console.log(error)
+        UserService.expiredToken(error);
         // Did a HTTP response come back? i.e. is the network/server up?
         if(error.response){
           errorBuilder(error)
