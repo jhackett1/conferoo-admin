@@ -17,9 +17,7 @@ var config = {
     "Friday"
   ],
   venues: [
-    'Big Room',
-    'Little Room A',
-    'Little Room B'
+    'C11', 'C6/34', 'C8/9', 'C20'
   ]
 }
 
