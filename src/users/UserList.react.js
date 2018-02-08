@@ -40,6 +40,7 @@ class UserList extends Component {
           <h1>All users</h1>
         </div>
         <Spinner isLoading={this.state.isLoading}/>
+        <p>{this.state.users.length} users have signed in</p>
         <ListGroup>{List}</ListGroup>
       </div>
     );
