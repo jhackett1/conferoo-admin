@@ -58,7 +58,7 @@ class PollEdit extends Component {
     temp[e.target.name] = e.target.value;
     this.setState({
       updatedPoll: temp,
-      isBlocking: true
+      isBlocking: true,
      });
   };
 
@@ -97,8 +97,15 @@ class PollEdit extends Component {
 
   handleSubmit(e){
     e.preventDefault();
+
+
+
     // Prepare the updated poll payload, inserting the new content from Quill
     var payload = this.state.updatedPoll;
+
+    // Update the date on every change
+    payload.createdAt = new Date();
+
     payload.content = this.state.content;
 
     // Make API call
