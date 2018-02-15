@@ -30,7 +30,7 @@ class EventItem extends Component {
         <DraftBadge/>
           <h4 className="list-group-item-heading">{poll.question}</h4>
           <p className="list-group-item-text">{poll.detail}</p>
-          <small>{Humandate.relativeTime(poll.createdAt)} | {responsesNumber + poll.openResponses.length} responses</small>
+          <small>Modified {Humandate.relativeTime(poll.createdAt)} | {responsesNumber + poll.openResponses.length} responses</small>
       </Link>
     );
   }

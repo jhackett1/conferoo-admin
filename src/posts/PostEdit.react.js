@@ -48,7 +48,7 @@ class PostEdit extends Component {
     var temp = this.state.updatedPost;
     // Support image and speaker pickers
     temp.image = e.chosenMedia;
-    temp.medium = e.medium;    
+    temp.medium = e.medium;
     temp.preview = e.preview;
     this.setState({
       updatedPost: temp,
@@ -103,6 +103,8 @@ class PostEdit extends Component {
     e.preventDefault();
     // Prepare the updated post payload
     var payload = this.state.updatedPost;
+    // Update the date on every change
+    payload.createdAt = new Date();
     payload.content = tinymce.activeEditor.getContent();
     // Make API call
     PostApi.updatePost(this.props.match.params.id, payload, (err, updatedPost)=>{

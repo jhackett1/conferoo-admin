@@ -103,10 +103,6 @@ class PageEdit extends Component {
     e.preventDefault();
     // Prepare the updated page payload
     var payload = this.state.updatedPage;
-
-    // Update the date on every change
-    payload.createdAt = new Date();
-
     payload.content = tinymce.activeEditor.getContent();
     // Make API call
     PageApi.updatePage(this.props.match.params.id, payload, (err, updatedPage)=>{

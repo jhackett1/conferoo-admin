@@ -43,7 +43,7 @@ class PostItem extends Component {
           <div className="media-body">
           <h4 className="list-group-item-heading">{post.title}</h4>
           <p className="list-group-item-text">{post.teaser}</p>
-          <small>{Humandate.relativeTime(post.createdAt)}</small>
+          <small>Modified {Humandate.relativeTime(post.createdAt)}</small>
           </div>
         </div>
       </Link>

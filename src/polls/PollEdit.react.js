@@ -102,10 +102,8 @@ class PollEdit extends Component {
 
     // Prepare the updated poll payload, inserting the new content from Quill
     var payload = this.state.updatedPoll;
-
     // Update the date on every change
     payload.createdAt = new Date();
-
     payload.content = this.state.content;
 
     // Make API call
